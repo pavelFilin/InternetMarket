@@ -1,20 +1,21 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<@c.nav/>
 <!--Сontent-->
 <div class="container-fluid" id="content">
     <div class="row justify-content-center">
         <div class="col-md-2">
             <h2>Имя</h2>
-            <form>
+            <form method="post" action="/user/profile/changename">
                 <div class="form-group input-group">
-                    <input name="" class="form-control" placeholder="Имя" type="text">
+                    <input name="firstName" class="form-control" placeholder="Имя" type="text">
                 </div>
                 <div class="form-group input-group">
-                    <input class="form-control" placeholder="Фамилия" type="text">
+                    <input name="SecondName" class="form-control" placeholder="Фамилия" type="text">
                 </div>
                 <div class="form-group">
+                                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
                     <button type="submit" class="btn btn-primary btn-block">Изменить</button>
                 </div>
             </form>

@@ -1,13 +1,21 @@
 package ru.feeleen.internetMarket.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 //@Entity
 //@Table(name = "role")
-public enum Role {
-    User;
+public enum Role implements GrantedAuthority {
+    USER,
+    ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return null;
+    }
 
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +51,7 @@ public enum Role {
 //    public void setUsers(Set<User> users) {
 //        this.users = users;
 //    }
-}
+    }
 
 
 

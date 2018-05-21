@@ -1,5 +1,4 @@
 <#macro page>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,59 +12,23 @@
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-<#nested >
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <#include "navbar.ftl">
+    <#nested >
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="/static/js/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-<script src="/static/js/bootstrap.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
-        integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-        crossorigin="anonymous"></script>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
 </body>
 </html>
 </#macro>
 
-
-<#macro nav>
-    <div class="container-fluid sticky-top navbar-dark bg-dark" id="navigator">
-        <nav class="navbar navbar-expand-md navbar ">
-            <a href="#" class="navbar-brand">Fish market</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Магазины</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Новости</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#"></a>
-                    </li>
-                </ul>
-
-            </div>
-            <p5><a class="" href="/authorization">Войти</a> <a class="" href="/registration">Регистация</a></p5>
-            <p5><form action="/logout" method="post">
-                <input type="submit" value="Sign Out"/>
-                <input type="hidden" name="_csrf" value="&{_csrf_token}">
-            </form></p5>
-        </nav>
-    </div>
-</#macro>
 
 <#macro footer>
     <footer class="page-footer font-small bg-dark text-light">

@@ -1,6 +1,5 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-<@c.nav/>
 <!--Сontent-->
 <div class="container-fluid" id="content">
     <div class="row justify-content-center">

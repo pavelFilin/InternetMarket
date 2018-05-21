@@ -2,7 +2,6 @@
 <#import "parts/categories.ftl" as ct>
 
 <@c.page>
-<@c.nav/>
 <div class="container-fluid" id="content">
     <div class="row">
         <@ct.categories/>
