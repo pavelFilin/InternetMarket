@@ -1,42 +1,55 @@
+<#include "parts/security.ftl">
 <#import "parts/common.ftl" as c>
 
 <@c.page>
+
+<#if isAdmin>
+    <#include "parts/adminnav.ftl">
+</#if>
 <!--Сontent-->
 <div class="container-fluid" id="content">
     <div class="row justify-content-center">
         <div class="col-md-2">
-            <h2>Имя</h2>
-            <form method="post" action="/user/profile/changename">
-                <div class="form-group input-group">
-                    <input name="firstName" class="form-control" placeholder="Имя" type="text">
-                </div>
-                <div class="form-group input-group">
-                    <input name="SecondName" class="form-control" placeholder="Фамилия" type="text">
-                </div>
-                <div class="form-group">
-                                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-                    <button type="submit" class="btn btn-primary btn-block">Изменить</button>
-                </div>
-            </form>
+            <div class="mt-3">
+                <form method="post" action="/user/profile/changefirstname">
+                    <div class="input-group">
+                        <input name="firstName" value="${firstName}" type="text" class="form-control" placeholder="Имя" aria-describedby="basic-addon">
+                        <div class="input-group-append">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <input type= "submit" class="btn btn-outline-primary" value="save">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mt-1">
+                <form method="post" action="/user/profile/changesecondname">
+                    <div class="input-group">
+                        <input name="secondName" value="${secondName}" type="text" class="form-control" placeholder="Имя" aria-describedby="basic-addon">
+                        <div class="input-group-append">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                            <input type= "submit" class="btn btn-outline-primary" value="save">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-2">
-            <h2>Пароль</h2>
-            <form>
-                <div class="form-group input-group">
-                    <input name="" class="form-control" placeholder="старый пароль" type="password">
-                </div>
-                <div class="form-group input-group">
-                    <input name="" class="form-control" placeholder="новый пароль" type="password">
-                </div>
-                <div class="form-group input-group">
-                    <input name="" class="form-control" placeholder="повторить пароль" type="password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Сменить пароль</button>
-                </div>
-            </form>
-        </div>
+        <#--<div class="col-md-2">-->
+            <#--<h2>Пароль</h2>-->
+            <#--<form>-->
+                <#--<div class="form-group input-group">-->
+                    <#--<input name="oldPassword" class="form-control" placeholder="старый пароль" type="password">-->
+                <#--</div>-->
+                <#--<div class="form-group input-group">-->
+                    <#--<input name="new" class="form-control" placeholder="новый пароль" type="password">-->
+                <#--</div>-->
+                <#--<div class="form-group input-group">-->
+                    <#--<input name="" class="form-control" placeholder="повторить пароль" type="password">-->
+                <#--</div>-->
+                <#--<div class="form-group">-->
+                    <#--<button type="submit" class="btn btn-primary btn-block">Сменить пароль</button>-->
+                <#--</div>-->
+            <#--</form>-->
+        <#--</div>-->
     </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -89,5 +102,5 @@
         </div>
     </div>
 </div>
-<@c.footer/>
+    <@c.footer/>
 </@c.page>
