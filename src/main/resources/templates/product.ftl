@@ -5,9 +5,7 @@
  <!--Сontent-->
         <div class="container-fluid" id="content">
             <div class="row">
-
                     <@categories.categories/>
-
                 <div class="col-md-9 bg-light text-dark">
                     <div class="row">
                         <div class="input-group search-place">
@@ -53,7 +51,6 @@
                                     dolore expedita facere ipsa iusto, laboriosam, maxime officiis omnis quia.
                                     Aliquam hic ipsa
                                     pariatur possimus reprehenderit sint temporibus.</p></div>
-
                         </div>
                     </div>
                 </div>

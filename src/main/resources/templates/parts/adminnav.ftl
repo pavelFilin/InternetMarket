@@ -5,12 +5,16 @@
         <div class="">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Добавить товар</a>
+                    <a class="nav-link" href="/product/addproduct">Добавить товар</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/user">Список пользователей</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categories">Список категорий</a>
+                </li>
             </ul>
+
         </div>
 
     </nav>
