@@ -28,29 +28,21 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="border">
-                                <img src="../img/productTemp.png" class="img-thumbnail mx-auto d-block  ">
+                            <div class="">
+                                <img src="/img/${product.imageUrl}" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-md-6 ">
                             <div class="row">
-                                <div class="col"><h3>Название товара</h3></div>
+                                <div class="col"><h3>${product.name}</h3></div>
                             </div>
                             <div class="row">
-                                <div class="col"><h5 class="text-primary">######## Р</h5></div>
+                                <div class="col"><h5 class="text-primary">${product.price} Р</h5></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col"><h5>Описание товара</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi debitis
-                                    dolor, error
-                                    expedita labore maiores perspiciatis qui quo repellendus reprehenderit sequi
-                                    tenetur
-                                    voluptates. A asperiores, blanditiis consequatur cupiditate deleniti deserunt
-                                    dignissimos
-                                    dolore expedita facere ipsa iusto, laboriosam, maxime officiis omnis quia.
-                                    Aliquam hic ipsa
-                                    pariatur possimus reprehenderit sint temporibus.</p></div>
+                                <p>${product.description}</p></div>
                         </div>
                     </div>
                 </div>

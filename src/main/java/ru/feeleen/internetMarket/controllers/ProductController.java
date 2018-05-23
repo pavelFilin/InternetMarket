@@ -1,29 +1,72 @@
 package ru.feeleen.internetMarket.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import ru.feeleen.internetMarket.entities.Product;
+import ru.feeleen.internetMarket.repositories.CategoryRepository;
+import ru.feeleen.internetMarket.repositories.ProductRepository;
+
+import javax.websocket.server.PathParam;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("product")
 public class ProductController {
-    @GetMapping
-    public String getProduct(){
+    @Value("${upload.path}")
+    private String uploadPath;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+
+    @GetMapping("{productID}")
+    public String getProduct(@PathVariable("productID") Product product , Model model) {
+        model.addAttribute("product", product);
         return "product";
     }
 
     @GetMapping("addproduct")
-    public String getAddProduct(){
-        return "addProduct";
+    public String getAddProduct(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "addproduct";
     }
 
     @PostMapping("addproduct")
     public String addProduct(
+            @RequestParam String title,
+            @RequestParam("price") Integer price,
+            @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
+            @RequestParam String category,
+            @RequestParam String description,
+            @RequestParam("file") MultipartFile file,
             Model model
-    ) {
-        return "/product";
+    ) throws IOException {
+        Product product = new Product(title, price, categoryRepository.findByTitle(category), description, warrantyMonths);
+        if (file != null) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadDir +"/" + resultFileName));
+
+            product.setImageUrl(resultFileName);
+        }
+
+        productRepository.save(product);
+
+        return "/product/" + product.getId();
     }
 
 }

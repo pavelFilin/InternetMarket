@@ -29,6 +29,17 @@ public class Product {
     @Column(name = "warrantyMonths")
     private Integer warrantyMonths;
 
+    public Product() {
+    }
+
+    public Product(String name, Integer price, Category category, String description, Integer warrantyMonths) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.warrantyMonths = warrantyMonths;
+    }
+
     public Long getId() {
         return id;
     }

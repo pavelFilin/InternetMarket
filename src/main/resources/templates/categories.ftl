@@ -39,8 +39,8 @@
             <div class="col-md-6 justify-content-center">
                 <form method="post" action="/categories/addcategory">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input name="title" type="text" class="form-control" placeholder="Название категории">
+                        <label for="categoryName">Название</label>
+                        <input name="title" type="text" class="form-control" id="categoryName" placeholder="Название категории">
                     </div>
                     <div class="form-group">
                         <label for="parent">Select parent category</label>
