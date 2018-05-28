@@ -1,7 +1,27 @@
-<#macro categories>
+<#macro categories cates>
         <div class="col-md-3 bg-dark text-light">
             <div class="container-fluid" id="catalog" style="padding: 0">
                 <div><h3 style="text-align: center">Категории товаров</h3></div>
+                <#list cates as categoryNode>
+                    <div>
+                        <nav>
+                            <button class="list-group-item" style="padding: 0px; width: 100%" type="button"
+                                    data-toggle="collapse"
+                                    data-target="#targetCategory1" aria-controls="navbarToggleExternalContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="list-group-item list-group-item-dark">${categoryNode}</span>
+                            </button>
+                        </nav>
+                        <div class="collapse" id="targetCategory1">
+                            <ul class="list-group">
+                               <#list 0..categoryNode.getNode.size as x>
+                                   <li class="list-group-item"><a href="">${categoryNode.get(x).getNode.getTitle}</a></li>
+                               </#list>
+                                <li class="list-group-item"><a href="">Спиннинговые</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </#list>
                 <div>
                     <nav>
                         <button class="list-group-item" style="padding: 0px; width: 100%" type="button"
@@ -93,4 +113,5 @@
                 </div>
             </div>
         </div>
+
 </#macro>

@@ -22,14 +22,13 @@
                         <a class="nav-link " href="#"></a>
                     </li>
                 </ul>
-
             </div>
             <#if !known>
                 <span class="nav-text text-light">Hi, gust</span>
-                <div class="ml-1"><span><a class="" href="/authorization">Войти</a> <a class="" href="/registration">Регистация</a></span>
+                <div class="ml-1"><span><a class="" href="/user/profile">Войти</a> <a class="" href="/registration">Регистация</a></span>
                 </div>
             <#else>
-                <div><a class="nav-link text-light" href="user/profile">${email}</a></div>
+                <div><a class="nav-link text-light" href="/user/profile">${email}</a></div>
                 <@login.logout/>
             </#if>
         </nav>

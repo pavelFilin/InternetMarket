@@ -33,23 +33,27 @@ public class UserController {
         return "profile";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("profile/changefirstname")
     public String changeFirstName(@RequestParam String firstName, @AuthenticationPrincipal User user){
         userService.changeFirstName(user, firstName);
         return "redirect:/user/profile";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("profile/changesecondname")
     public String changeSecondName(@RequestParam String secondName, @AuthenticationPrincipal User user){
         userService.changeFirstName(user, secondName);
         return "redirect:/user/profile";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String getUserList(Model model){
         model.addAttribute("users", userRepository.findAll());
         return "userlist";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
@@ -57,6 +61,7 @@ public class UserController {
         return "useredit";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(
             @RequestParam Map<String, String> form,

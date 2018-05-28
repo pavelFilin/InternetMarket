@@ -1,10 +1,33 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/categories.ftl" as ct>
 
 <@c.page>
 <div class="container-fluid" id="content">
     <div class="row">
-        <@ct.categories/>
+        <div class="col-md-3 bg-dark text-light">
+            <div class="container-fluid" id="catalog" style="padding: 0">
+                <div><h3 style="text-align: center">Категории товаров</h3></div>
+                <#list categor as categoryNode>
+                    <div>
+                        <nav>
+                            <button class="list-group-item" style="padding: 0px; width: 100%" type="button"
+                                    data-toggle="collapse"
+                                    data-target="#targetCategory${categoryNode?counter}" aria-controls="navbarToggleExternalContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="list-group-item list-group-item-dark"><a href="#">${categoryNode.node.title}</a></span>
+                            </button>
+                        </nav>
+                        <div class="collapse" id="targetCategory${categoryNode?counter}">
+                            <ul class="list-group">
+                               <#list categoryNode.categories as subcate>
+                                   <li class="list-group-item"><a href="#"> ${subcate.node.getTitle()}</a></li>
+                               </#list>
+                            </ul>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+        </div>
+
         <div class="col-md-9">
             <div class="row justify-content-center bg-light" style="margin-bottom: 10px">
                 <div id="newsCarouse" class="carousel slide col-12" data-ride="carousel">
@@ -53,114 +76,36 @@
             </div>
             <div class="row">
                 <div class="input-group search-place">
-                    <input type="text" class="form-control" placeholder="Поиск" aria-label="Search term" aria-describedby="basic-addon">
+                    <input type="text" class="form-control" placeholder="Поиск" aria-label="Search term"
+                           aria-describedby="basic-addon">
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="button">Найти!</button>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4  product-container">
-                    <div class="product-image">
-                        <img src="/img/img.jpg" alt="" class=" mx-auto rounded  d-block">
+                <div class="col-md-12 mb-3">
+                    <div class="card-deck">
+                <#list products as product>
+                    <div class="card" style="">
+                        <img class="card-img-top" src="/img/${product.imageUrl}" alt="Card image cap">
+                        <div class="card-body">
+                            <a href="/product/${product.id}"><h5 class="card-title">${product.name}</h5></a>
+                            <p class="card-text">${product.description}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        <div class="card-footer">
+                            <h4 class="text-info">${product.price} Р</h4>
+                        </div>
                     </div>
-                    <div class="product-name text-center">
-                        <span>Телескопическая карбоновая удочка 1.5м Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aperiam autem eligendi fuga laboriosam maxime nihil provident sed sunt ut. Cumque deleniti dolorem eligendi eos facilis inventore magnam voluptate voluptatum?20</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-                <div class="col-md-4  product-container">
-                    <div class="product-image">
-                        <img src="/img/img.jpg" alt="" class="rounded mx-auto d-block">
-                    </div>
-                    <div class="product-name text-center">
-                        <span>Название продукта</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-                <div class="col-md-4  product-container">
-                    <div class="product-image">
-                        <img src="../img/img.jpg" alt="" class="rounded mx-auto d-block">
-                    </div>
-                    <div class="product-name text-center">
-                        <span>Название продукта</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4  product-container">
-                    <div class="product-image">
-                        <img src="../img/img.jpg" alt="" class="rounded mx-auto d-block">
-                    </div>
-                    <div class="product-name text-center">
-                        <span>Название продукта</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-                <div class="col-md-4 product-container">
-                    <div class="product-image">
-                        <img src="../img/img.jpg" alt="" class="rounded mx-auto d-block">
-                    </div>
-                    <div class="product-name text-center">
-                        <span>Название продукта</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-                <div class="col-md-4  product-container">
-                    <div class="product-image">
-                        <img src="../img/img.jpg" alt="" class="rounded mx-auto d-block ">
-                    </div>
-                    <div class="product-name text-center">
-                        <span>Название продукта</span>
-                    </div>
-                    <div class="product-price text-center">
-                        <h3>7000 Р</h3>
-                    </div>
-                    <div class="product-buttons text-center ">
-                        <button class="btn bg-light align-self-center">Купить</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                </#list>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<@c.footer/>
+    <@c.footer/>
 </@c.page>
 
 
