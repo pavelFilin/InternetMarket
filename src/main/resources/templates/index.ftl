@@ -87,12 +87,12 @@
                 <div class="col-md-12 mb-3">
                     <div class="card-deck">
                 <#list products as product>
-                    <div class="card" style="">
-                        <img class="card-img-top" src="/img/${product.imageUrl}" alt="Card image cap">
+                    <div class="card">
+                        <img class="card-img-top" src="/img/${product.imageUrl}" alt="${product.name}">
                         <div class="card-body">
                             <a href="/product/${product.id}"><h5 class="card-title">${product.name}</h5></a>
                             <p class="card-text">${product.description}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="javascript:void(0);" onclick="ajaxAddToCard(${product.getId()});" class="btn btn-primary">Купить</a>
                         </div>
                         <div class="card-footer">
                             <h4 class="text-info">${product.price} Р</h4>

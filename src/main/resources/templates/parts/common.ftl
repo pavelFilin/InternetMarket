@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <title>Fish Shop</title>
     <meta charset="utf-8">
@@ -25,6 +27,7 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
         integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
         crossorigin="anonymous"></script>
+<script src="/static/js/main.js"></script>
 </body>
 </html>
 </#macro>

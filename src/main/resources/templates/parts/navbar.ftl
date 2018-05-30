@@ -29,6 +29,7 @@
                 </div>
             <#else>
                 <div><a class="nav-link text-light" href="/user/profile">${email}</a></div>
+                <button class="btn btn-danger" href="/cart" >Корзина</button>
                 <@login.logout/>
             </#if>
         </nav>

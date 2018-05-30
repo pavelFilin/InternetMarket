@@ -45,7 +45,7 @@ public class CategoryController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("{category}")
+    @GetMapping("delete/{category}")
     public String userEditForm(@PathVariable Category category, Model model) {
         categoryRepository.delete(category);
         return "redirect:/categories";

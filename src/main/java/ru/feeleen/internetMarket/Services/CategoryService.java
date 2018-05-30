@@ -63,8 +63,11 @@ public class CategoryService {
             node.add(childNode);
             return true;
         }
+
         for (int i = 0; i < node.size(); i++) {
-            goToTree(node.get(i), category);
+            if (goToTree(node.get(i), category)) {
+                return true;
+            }
         }
 
         return false;

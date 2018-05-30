@@ -26,7 +26,7 @@
                         <td>-</td>
                         </#if>
                         <td>
-                            <a href="/categories/${category.id}"><input type="submit" value="delete" class="btn btn-outline-primary"></a>
+                            <a href="/categories/delete/${category.id}"><input type="submit" value="delete" class="btn btn-outline-primary"></a>
                         </td>
                 </tr>
                 </#list>

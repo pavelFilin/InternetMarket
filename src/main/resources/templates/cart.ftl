@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
 <!--Сontent-->
-<div class="container-fluid" id="content">
+<div class="container-fluid mb-3" id="content">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <table class="table table-light table-striped  table-hover mx-auto cart " style="max-width: 1000px">

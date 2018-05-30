@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.feeleen.internetMarket.Services.CategoryService;
 import ru.feeleen.internetMarket.entities.Product;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
 import ru.feeleen.internetMarket.repositories.ProductRepository;
@@ -26,11 +27,15 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private CategoryRepository categoryRepository;
 
 
     @GetMapping("{productID}")
     public String getProduct(@PathVariable("productID") Product product , Model model) {
+        model.addAttribute("categories",categoryService.getTreeCategories());
         model.addAttribute("product", product);
         return "product";
     }
