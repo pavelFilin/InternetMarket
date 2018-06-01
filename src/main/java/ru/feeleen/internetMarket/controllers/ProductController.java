@@ -61,13 +61,13 @@ public class ProductController {
         Product product = new Product(title, price, categoryRepository.findByTitle(category), description, warrantyMonths);
         if (file != null) {
             File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
             String uuidFile = UUID.randomUUID().toString();
             String resultFileName = uuidFile + "." + file.getOriginalFilename();
 
-            file.transferTo(new File(uploadDir +"/" + resultFileName));
+            file.transferTo(new File(uploadDir + "/" + resultFileName));
 
             product.setImageUrl(resultFileName);
         }
@@ -76,5 +76,7 @@ public class ProductController {
 
         return "/product/" + product.getId();
     }
+
+
 
 }

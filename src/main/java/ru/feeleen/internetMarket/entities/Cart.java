@@ -12,13 +12,11 @@ import java.util.List;
 public class Cart {
 
     @Id
-    @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(generator = "gen1")
-    @GenericGenerator(name = "gen1", strategy = "foreign", parameters = @Parameter(name = "property", value = "user"))
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
     private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true,

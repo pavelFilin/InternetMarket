@@ -88,7 +88,7 @@
 
                                 <div class="row justify-content-center"><div class="col-md-4">
                                     <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                    <input type="submit" class="btn btn-primary">Submit</input>
+                                    <input type="submit" class="btn btn-primary">
                                 </div>
                                 </div>
                             </form>
