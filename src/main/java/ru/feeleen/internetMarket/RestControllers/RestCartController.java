@@ -97,4 +97,19 @@ public class RestCartController {
         return new Gson().toJson(new CartJson(user.getCart().getTotalItems(), user.getCart().getTotalPrise()));
     }
 
+    @RequestMapping(value = "/changeamount", method = RequestMethod.GET, produces = "application/json")
+    public String changeAmount(@AuthenticationPrincipal User user, @RequestParam(name = "id") Product product, @RequestParam Integer amount) {
+        Optional<Cart> cartOptional = cartRepository.findById(user.getCart().getId());
+        Cart cart = cartOptional.get();
+        for (CartItem cartItem : cart.getCartItems()) {
+            if (cartItem.getProduct().getId() == product.getId()) {
+                cartItem.setAmount(amount);
+                break;
+            }
+        }
+
+        cartRepository.save(cart);
+        return new Gson().toJson(new CartJson(user.getCart().getTotalItems(), user.getCart().getTotalPrise()));
+    }
+
 }

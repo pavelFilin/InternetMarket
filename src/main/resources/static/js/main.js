@@ -59,3 +59,24 @@ function ajaxDeleteCartItem(productId) {
         }
     });
 }
+
+function changeProductAmount(input, productId) {
+    if(input.value<1) {
+        input.value=1;
+    }
+
+
+    $.ajax({
+        method: "GET",
+        url: "/changeamount",
+        data: {id: productId, amount: input.value},
+        dataType: 'json',
+        success: function (data) {
+            location.reload();
+        },
+        error: function () {
+            alert('error!');
+        }
+    });
+
+}

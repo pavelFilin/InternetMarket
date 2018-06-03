@@ -7,22 +7,36 @@ import javax.persistence.*;
 @Table(name = "ordered_product")
 public class OrderedProduct {
 
-    @EmbeddedId
-    private OrderedProductId orderedProductId = new OrderedProductId();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
 
-    @MapsId("orderId")
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Order order;
 
-    @MapsId("productId")
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Product product;
 
     @Column(name = "amount")
     private int amount;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public OrderedProduct() {
+    }
+
+    public OrderedProduct(Order order, Product product, int amount) {
+        this.order = order;
+        this.product = product;
+        this.amount = amount;
+    }
 
     public Order getOrder() {
         return order;
@@ -46,14 +60,6 @@ public class OrderedProduct {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public OrderedProductId getOrderedProductId() {
-        return orderedProductId;
-    }
-
-    public void setOrderedProductId(OrderedProductId orderedProductId) {
-        this.orderedProductId = orderedProductId;
     }
 }
 

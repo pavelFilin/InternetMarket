@@ -6,27 +6,20 @@
         <div class="col-md-12">
             <table class="table table-light table-striped  table-hover mx-auto cart " style="max-width: 1000px">
                 <tbody class="">
-                    <#if !(cart.getTotalItems()<1)>
                 <tr>
                     <td></td>
-                        <td></td>
-                        <td>Итого</td>
-                        <td>${cart.getTotalPrise()}</td>
-                        <td>
-                            <a href="/order/makeorder" class="btn btn-primary mx-auto d-block">Оформить заказ</a>
-                        </td>
-                    </#if>
+                    <td></td>
+                    <td>Итого</td>
+                    <td>${cart.getTotalPrise()} Р</td>
+                    <td></td>
                 </tr>
                   <#list cart.getCartItems() as cartItem>
                   <tr>
-                      <td><img src="/img/${cartItem.getProduct().getImageUrl()}" alt="" class="img-thumbnail"
-                               style="width: 200px"></td>
+                      <td>${cartItem.getProduct().getId()}</td>
                       <td><a href="/product/${cartItem.getProduct().getId()}"
                              class="">${cartItem.getProduct().getName()}</a></td>
                       <td>
-                          <div class="input-group">
-                              <input class="form-control-sm" value="${cartItem.getAmount()}" type="number"
-                                     onchange="changeProductAmount(this, ${cartItem.getProduct().getId()})">
+                          <div class="input-group">${cartItem.getAmount()}
                           </div>
                       </td>
                       <td>${cartItem.getProduct().getPrice() * cartItem.getAmount()}</td>
@@ -43,7 +36,19 @@
                   </div>
                   </#list>
                 </tbody>
+
             </table>
+            <div class="mt-3">
+                <form method="post" action="/order/makeorder">
+                    <div class="input-group">
+                        <input type="hidden" name = "cart" value="${cart.id}">
+                        <input name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control" placeholder="Телефон">
+                        <input name="address" value="${userContacts.getAddress()?if_exists}" type="text" class="form-control" placeholder="Адрес">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <input type= "submit" class="btn btn-outline-primary" value="Купить">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

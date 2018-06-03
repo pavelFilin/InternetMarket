@@ -26,13 +26,30 @@ public class Order {
     @Column(name = "products_prise", nullable = false)
     private int productsPrise;
 
-    @Column(name = "date_created", nullable = false)
-    @Temporal(TIMESTAMP)
-    private Date dateCreated;
+//    @Column(name = "date_created", nullable = false)
+//    @Temporal(TIMESTAMP)
+//    private Date dateCreated;
 
-    @Column(name = "execution_Stage", nullable = false)
-    private String executionStage;
+    @Column(name="address")
+    private String address;
 
+    @Column(name="phone")
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private ExecutionStage executionStage;
+
+    public Order() {
+    }
+
+    public Order(User user, Set<OrderedProduct> orderedProducts, int productsPrise, String address, String phone, ExecutionStage executionStage) {
+        this.user = user;
+        this.orderedProducts = orderedProducts;
+        this.productsPrise = productsPrise;
+        this.address = address;
+        this.phone = phone;
+        this.executionStage = executionStage;
+    }
 
     public Long getId() {
         return id;
@@ -66,12 +83,29 @@ public class Order {
         this.productsPrise = productsPrise;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+//    public Date getDateCreated() {
+//        return dateCreated;
+//    }
+//
+//    public void setDateCreated(Date dateCreated) {
+//        this.dateCreated = dateCreated;
+//    }
+
+
+    public String getAddress() {
+        return address;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public User getUser() {
@@ -82,11 +116,11 @@ public class Order {
         this.user = user;
     }
 
-    public String getExecutionStage() {
+    public ExecutionStage getExecutionStage() {
         return executionStage;
     }
 
-    public void setExecutionStage(String executionStage) {
+    public void setExecutionStage(ExecutionStage executionStage) {
         this.executionStage = executionStage;
     }
 }
