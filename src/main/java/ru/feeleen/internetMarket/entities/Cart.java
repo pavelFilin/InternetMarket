@@ -4,15 +4,16 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "cart")
-public class Cart {
+public class Cart implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -53,6 +54,10 @@ public class Cart {
     }
 
     public Integer getTotalItems() {
+        totalItems = 0;
+        for (CartItem cartItem : cartItems) {
+            totalItems += cartItem.getAmount();
+        }
         return totalItems;
     }
 
@@ -61,6 +66,11 @@ public class Cart {
     }
 
     public Integer getTotalPrise() {
+        totalPrise = 0;
+        for (CartItem cartItem : cartItems) {
+           totalPrise += cartItem.getProduct().getPrice() * cartItem.getAmount();
+        }
+
         return totalPrise;
     }
 

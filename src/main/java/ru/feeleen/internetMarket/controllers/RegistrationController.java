@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.feeleen.internetMarket.entities.Cart;
 import ru.feeleen.internetMarket.entities.Role;
 import ru.feeleen.internetMarket.entities.User;
+import ru.feeleen.internetMarket.entities.UserContacts;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 
 import java.util.Collection;
@@ -32,6 +34,8 @@ public class RegistrationController {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+        user.setCart(new Cart());
+        user.setUserContacts(new UserContacts());
         userRepository.save(user);
         return "redirect:/login";
     }

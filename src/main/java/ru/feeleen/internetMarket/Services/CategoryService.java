@@ -30,12 +30,12 @@ public class CategoryService {
 
     public List<CategoryNode> getTreeCategories() {
         List<Category> categoriesDB = (List<Category>) categoryRepository.findAll();
-        List<CategoryNode> mainCategories = new LinkedList();
+        List<CategoryNode> resultTreeOfCategories = new LinkedList();
         for (int i = 0; i < categoriesDB.size(); i++) {
             if (categoriesDB.get(i).getParent() == null) {
                 CategoryNode categoryNode = new CategoryNode();
                 categoryNode.setNode(categoriesDB.get(i));
-                mainCategories.add(categoryNode);
+                resultTreeOfCategories.add(categoryNode);
                 categoriesDB.remove(i);
                 i--;
             }
@@ -43,15 +43,15 @@ public class CategoryService {
 
         while (!categoriesDB.isEmpty()) {
             int index = 0;
-            for (int i = 0; i < mainCategories.size(); i++) {
-                if (goToTree(mainCategories.get(i), categoriesDB.get(index))) {
+            for (int i = 0; i < resultTreeOfCategories.size(); i++) {
+                if (categoriesDB.size()>index && goToTree(resultTreeOfCategories.get(i), categoriesDB.get(index))) {
                     categoriesDB.remove(index);
                 }
             }
 
             index = (categoriesDB.size() - 1 == index) ? 0 : index++;
         }
-        return mainCategories;
+        return resultTreeOfCategories;
     }
 
 

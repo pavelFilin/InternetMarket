@@ -6,40 +6,31 @@
         <div class="col-md-12">
             <table class="table table-light table-striped  table-hover mx-auto cart " style="max-width: 1000px">
                 <tbody class="">
-                <tr>
-                    <td><img src="../img/image.jpg" alt="..." class="img-thumbnail" style="width: 200px"></td>
-                    <td><a href="#" class="">название 1</a></td>
-                    <td>1</td>
-                    <td>12345</td>
-                    <td><button class="btn btn-danger">delete</button></td>
-                </tr>
-                <tr>
-                    <td><img src="../img/image.jpg" alt="..." class="img-thumbnail" style="width: 200px"></td>
-                    <td><a href="#" class="">название 1</a></td>
-                    <td>1</td>
-                    <td>3123 </td>
-                    <td><button class="btn btn-danger">delete</button></td>
-                </tr>
-                <tr>
-                    <td><img src="../img/image.jpg" alt="..." class="img-thumbnail" style="width: 200px"></td>
-                    <td><a href="#" class="">название 1</a></td>
-                    <td>4</td>
-                    <td>52345</td>
-                    <td><button class="btn btn-danger">delete</button></td>
-                </tr>
-                <tr>
-                    <td><img src="../img/image.jpg" alt="..." class="img-thumbnail" style="width: 200px"></td>
-                    <td><a href="#" class="">название 1</a></td>
-                    <td>2</td>
-                    <td>24700</td>
-                    <td><button class="btn btn-danger">delete</button></td>
-                </tr>
+                  <#list cart.getCartItems() as cartItem>
+                  <tr>
+                      <td><img src="/img/${cartItem.getProduct().getImageUrl()}" alt="" class="img-thumbnail"
+                               style="width: 200px"></td>
+                      <td><a href="/product/${cartItem.getProduct().getId()}"
+                             class="">${cartItem.getProduct().getName()}</a></td>
+                      <td>${cartItem.getAmount()}</td>
+                      <td>${cartItem.getProduct().getPrice() * cartItem.getAmount()}</td>
+                      <td>
+                          <a class="btn btn-danger" href="javascript:void(0);" onclick="ajaxDeleteCartItem(${cartItem.getProduct().getId()})">удалить</a>
+                      </td>
+                  </tr>
+                  <#else>
+                  <div class="container my-4">
+                      <div class="alert alert-info" role="alert">
+                          В вашей корзине пока <strong>нет товаров</strong>!
+                      </div>
+                  </div>
+                  </#list>
                 </tbody>
             </table>
-            <button class="btn btn-primary mx-auto d-block " style="width: 200px">Купить</button>
+            <button class="btn btn-primary mx-auto d-block">Оформить заказ</button>
         </div>
     </div>
 </div>
 
-<@c.footer/>
+    <@c.footer/>
 </@c.page>

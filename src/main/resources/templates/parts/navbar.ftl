@@ -6,7 +6,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -29,7 +28,7 @@
                 </div>
             <#else>
                 <div><a class="nav-link text-light" href="/user/profile">${email}</a></div>
-                <button class="btn btn-danger" href="/cart" >Корзина</button>
+                <a class="btn btn-danger" href="/cart" id = "cart-button" >Корзина</a>
                 <@login.logout/>
             </#if>
         </nav>

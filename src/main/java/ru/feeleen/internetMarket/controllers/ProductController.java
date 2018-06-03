@@ -74,7 +74,7 @@ public class ProductController {
 
         productRepository.save(product);
 
-        return "/product/" + product.getId();
+        return "redirect:/product/" + product.getId();
     }
 
 

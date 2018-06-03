@@ -13,8 +13,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 

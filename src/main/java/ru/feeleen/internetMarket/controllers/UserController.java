@@ -1,7 +1,6 @@
 package ru.feeleen.internetMarket.controllers;
 
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.feeleen.internetMarket.Services.UserService;
 import ru.feeleen.internetMarket.entities.Role;
 import ru.feeleen.internetMarket.entities.User;
+import ru.feeleen.internetMarket.entities.UserContacts;
+import ru.feeleen.internetMarket.repositories.UserContactsRepository;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 
 import java.util.Arrays;
@@ -21,8 +22,13 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    @Autowired
+    UserContactsRepository userContactsRepository;
+
     @Autowired
     UserRepository userRepository;
+
     @Autowired
     private UserService userService;
 
@@ -30,19 +36,42 @@ public class UserController {
     public String getProfile(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("secondName", user.getSecondName());
+        model.addAttribute(userService.getUserContactsFromDataBase(user));
         return "profile";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("profile/changefirstname")
     public String changeFirstName(@RequestParam String firstName, @AuthenticationPrincipal User user){
         userService.changeFirstName(user, firstName);
         return "redirect:/user/profile";
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     @PostMapping("profile/changesecondname")
     public String changeSecondName(@RequestParam String secondName, @AuthenticationPrincipal User user){
-        userService.changeFirstName(user, secondName);
+        userService.changeSecondName(user, secondName);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setAddress")
+    public String setAddress(@RequestParam String address, @AuthenticationPrincipal User user){
+        userService.setAddress(user, address);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setcity")
+    public String setCity(@RequestParam String city, @AuthenticationPrincipal User user){
+        userService.setCity(user, city);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setcountry")
+    public String setCountry(@RequestParam String country, @AuthenticationPrincipal User user){
+        userService.setCountry(user, country);
+        return "redirect:/user/profile";
+    }
+    @PostMapping("profile/setphone")
+    public String setPhone(@RequestParam String phone, @AuthenticationPrincipal User user){
+        userService.setPhone(user, phone);
         return "redirect:/user/profile";
     }
 
