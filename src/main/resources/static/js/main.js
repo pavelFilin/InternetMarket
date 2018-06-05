@@ -61,6 +61,12 @@ function ajaxDeleteCartItem(productId) {
 }
 
 function changeProductAmount(input, productId) {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+
     if(input.value<1) {
         input.value=1;
     }
@@ -78,5 +84,26 @@ function changeProductAmount(input, productId) {
             alert('error!');
         }
     });
+}
 
+function changeExecutionStage(input, orderId) {
+
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+
+    $.ajax({
+        method: "GET",
+        url: "/order/changeexecutionstage",
+        data: {id: orderId, executionStage: input.value},
+        dataType: 'json',
+        success: function (data) {
+            location.reload();
+        },
+        error: function () {
+            alert('error!');
+        }
+    });
 }

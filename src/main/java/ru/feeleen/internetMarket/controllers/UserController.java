@@ -8,13 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.feeleen.internetMarket.Services.UserService;
-import ru.feeleen.internetMarket.entities.Role;
-import ru.feeleen.internetMarket.entities.User;
-import ru.feeleen.internetMarket.entities.UserContacts;
+import ru.feeleen.internetMarket.entities.*;
+import ru.feeleen.internetMarket.repositories.OrderRepository;
 import ru.feeleen.internetMarket.repositories.UserContactsRepository;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("user")
 public class UserController {
+    @Autowired
+    OrderRepository orderRepository;
 
     @Autowired
     UserContactsRepository userContactsRepository;
@@ -36,7 +38,10 @@ public class UserController {
     public String getProfile(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("secondName", user.getSecondName());
-        model.addAttribute(userService.getUserContactsFromDataBase(user));
+        model.addAttribute("userContacts", userService.getUserContactsFromDataBase(user));
+        List<Order> allByUserid = orderRepository.findAllByUser(user);
+        model.addAttribute("orders", allByUserid);
+        model.addAttribute("executionStages", ExecutionStage.values());
         return "profile";
     }
 

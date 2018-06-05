@@ -9,9 +9,8 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td>Итого</td>
+                    <td>Итого:</td>
                     <td>${cart.getTotalPrise()} Р</td>
-                    <td></td>
                 </tr>
                   <#list cart.getCartItems() as cartItem>
                   <tr>
@@ -23,10 +22,6 @@
                           </div>
                       </td>
                       <td>${cartItem.getProduct().getPrice() * cartItem.getAmount()}</td>
-                      <td>
-                          <a class="btn btn-danger" href="javascript:void(0);"
-                             onclick="ajaxDeleteCartItem(${cartItem.getProduct().getId()})">удалить</a>
-                      </td>
                   </tr>
                   <#else>
                   <div class="container my-4">

@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.feeleen.internetMarket.entities.*;
 import ru.feeleen.internetMarket.repositories.CartRepository;
 import ru.feeleen.internetMarket.repositories.OrderRepository;
@@ -60,5 +57,12 @@ public class OrderController {
         orderRepository.save(order);
 
         return "redirect:/user/profile";
+    }
+
+    @GetMapping("{order}")
+    public String getOrder(@AuthenticationPrincipal User user, @PathVariable Order order, Model model) {
+        model.addAttribute("order", order);
+        model.addAttribute("userContacts", userContactsRepository.findById(order.getUser().getUserContacts().getId()).get());
+        return "order";
     }
 }
