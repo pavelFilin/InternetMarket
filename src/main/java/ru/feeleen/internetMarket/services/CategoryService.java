@@ -1,4 +1,4 @@
-package ru.feeleen.internetMarket.Services;
+package ru.feeleen.internetMarket.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +72,7 @@ public class CategoryService {
 
         return false;
     }
+
 
 
     private boolean findCategoryInList(List<Category> list, Category category) {

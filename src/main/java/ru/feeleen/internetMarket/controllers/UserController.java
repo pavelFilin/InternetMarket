@@ -7,7 +7,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.feeleen.internetMarket.Services.UserService;
+import ru.feeleen.internetMarket.services.OrderService;
+import ru.feeleen.internetMarket.services.UserService;
 import ru.feeleen.internetMarket.entities.*;
 import ru.feeleen.internetMarket.repositories.OrderRepository;
 import ru.feeleen.internetMarket.repositories.UserContactsRepository;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    @Autowired
+    private OrderService orderService;
     @Autowired
     OrderRepository orderRepository;
 
@@ -39,45 +43,15 @@ public class UserController {
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("secondName", user.getSecondName());
         model.addAttribute("userContacts", userService.getUserContactsFromDataBase(user));
-        List<Order> allByUserid = orderRepository.findAllByUser(user);
-        model.addAttribute("orders", allByUserid);
+
+        if (user.isAdmin()) {
+            model.addAttribute("orders", orderService.findAll());
+        } else {
+            model.addAttribute("orders", orderService.findAllByUser(user));
+        }
+
         model.addAttribute("executionStages", ExecutionStage.values());
         return "profile";
-    }
-
-    @PostMapping("profile/changefirstname")
-    public String changeFirstName(@RequestParam String firstName, @AuthenticationPrincipal User user){
-        userService.changeFirstName(user, firstName);
-        return "redirect:/user/profile";
-    }
-
-    @PostMapping("profile/changesecondname")
-    public String changeSecondName(@RequestParam String secondName, @AuthenticationPrincipal User user){
-        userService.changeSecondName(user, secondName);
-        return "redirect:/user/profile";
-    }
-
-    @PostMapping("profile/setAddress")
-    public String setAddress(@RequestParam String address, @AuthenticationPrincipal User user){
-        userService.setAddress(user, address);
-        return "redirect:/user/profile";
-    }
-
-    @PostMapping("profile/setcity")
-    public String setCity(@RequestParam String city, @AuthenticationPrincipal User user){
-        userService.setCity(user, city);
-        return "redirect:/user/profile";
-    }
-
-    @PostMapping("profile/setcountry")
-    public String setCountry(@RequestParam String country, @AuthenticationPrincipal User user){
-        userService.setCountry(user, country);
-        return "redirect:/user/profile";
-    }
-    @PostMapping("profile/setphone")
-    public String setPhone(@RequestParam String phone, @AuthenticationPrincipal User user){
-        userService.setPhone(user, phone);
-        return "redirect:/user/profile";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -113,5 +87,40 @@ public class UserController {
         }
         userRepository.save(user);
         return " redirect:/user";
+    }
+
+    @PostMapping("profile/changefirstname")
+    public String changeFirstName(@RequestParam String firstName, @AuthenticationPrincipal User user){
+        userService.changeFirstName(user, firstName);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/changesecondname")
+    public String changeSecondName(@RequestParam String secondName, @AuthenticationPrincipal User user){
+        userService.changeSecondName(user, secondName);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setAddress")
+    public String setAddress(@RequestParam String address, @AuthenticationPrincipal User user){
+        userService.setAddress(user, address);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setcity")
+    public String setCity(@RequestParam String city, @AuthenticationPrincipal User user){
+        userService.setCity(user, city);
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("profile/setcountry")
+    public String setCountry(@RequestParam String country, @AuthenticationPrincipal User user){
+        userService.setCountry(user, country);
+        return "redirect:/user/profile";
+    }
+    @PostMapping("profile/setphone")
+    public String setPhone(@RequestParam String phone, @AuthenticationPrincipal User user){
+        userService.setPhone(user, phone);
+        return "redirect:/user/profile";
     }
 }

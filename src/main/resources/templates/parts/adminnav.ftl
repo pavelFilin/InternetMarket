@@ -11,7 +11,7 @@
                     <a class="nav-link" href="/user">Список пользователей</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/categories">Список категорий</a>
+                    <a class="nav-link" href="/categories/diagram">Список категорий</a>
                 </li>
             </ul>
 

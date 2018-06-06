@@ -31,22 +31,19 @@
                   </div>
                   </#list>
                 </tbody>
-
             </table>
             <div class="mt-3">
                 <div class="row">
                     <div class="col-2 offset-2">
-                        <p><strong>Номер: </strong>${userContacts.getPhone()}</p>
+                        <p><strong>Номер: </strong>${order.getPhone()}</p>
                     </div>
                     <div class="col-4">
-                        <p><strong>Адрес: </strong>${userContacts.getAddress()}</p>
+                        <p><strong>Адрес: </strong>${order.getAddress()}</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
     <@c.footer/>
 </@c.page>

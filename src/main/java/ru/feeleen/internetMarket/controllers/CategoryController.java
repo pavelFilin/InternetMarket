@@ -5,12 +5,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.feeleen.internetMarket.Services.CategoryService;
+import ru.feeleen.internetMarket.services.CategoryService;
 import ru.feeleen.internetMarket.entities.Category;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
-import ru.feeleen.internetMarket.treehelper.CategoryNode;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("categories")
@@ -21,10 +18,10 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping
-    public String getCategories(Model model) {
+    @GetMapping("diagram")
+    public String getSchemaOfCategories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
-        return "categories";
+        return "categorydiagram";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

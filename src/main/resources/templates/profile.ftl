@@ -107,18 +107,32 @@
                 <thead class="table-dark">
                 <tr>
                     <th>№</th>
-                    <th>Статус</th>
+                    <th>id</th>
+                    <th>email</th>
                     <th>Адрес доставки</th>
                     <th>Цена</th>
+                    <th>Статус</th>
+                    <th>Продукты</th>
                 </tr>
                 </thead>
                 <tbody class="">
                     <#list orders as order>
                     <tr>
                         <td>${order?counter}</td>
+                    <td>
+                            <#if isAdmin>
+                                <a href="/order/${order.getId()}">${order.getId()}</a>
+                            <#else >
+                                ${order.getId()}</td>
+                            </#if>
+                        </td>
+                        <td>${order.getUser().getEmail()}</td>
+                        <td>${order.getAddress()}</td>
+                        <td>${order.getProductsPrise()}</td>
                         <td>
                              <#if isAdmin>
-                                 <select name="executionStage" class="form-control" onchange="changeExecutionStage(this, ${order.getId()})" >
+                                 <select name="executionStage" class="form-control"
+                                         onchange="changeExecutionStage(this, ${order.getId()})">
                                       <#list executionStages as executionStage>
                                           <option
 
@@ -128,16 +142,19 @@
                                           >
                                               ${executionStage}
                                           </option>
-                                     </#list>
+                                      </#list>
                                  </select>
                              <#else>
                                  <a href="/order/${order.getId()}">${order.getExecutionStage()}</a>
                              </#if>
                         </td>
-
-
-                        <td>${order.getAddress()}</td>
-                        <td>${order.getProductsPrise()}</td>
+                        <td>
+                            <#list order.getOrderedProducts() as orderedProduct>
+                                <a class="alert-danger"
+                                   href="/product/${orderedProduct.getProduct().getId()}">${orderedProduct.getProduct().getName()}</a> ${orderedProduct.getAmount()} <#sep>
+                                ,
+                            </#list>
+                        </td>
                     </tr>
                     </#list>
                 </tbody>

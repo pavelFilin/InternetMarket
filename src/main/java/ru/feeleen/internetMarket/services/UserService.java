@@ -1,4 +1,4 @@
-package ru.feeleen.internetMarket.Services;
+package ru.feeleen.internetMarket.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

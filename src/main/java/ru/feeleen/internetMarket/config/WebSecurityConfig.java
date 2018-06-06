@@ -17,8 +17,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-
     @Autowired
     private UserDetailsService userService;
 
@@ -26,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/static/**", "/registration", "/img/**").permitAll()
+                    .antMatchers("/", "/static/**", "/img/**", "/registration", "/product/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

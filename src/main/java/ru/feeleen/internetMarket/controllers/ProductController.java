@@ -7,12 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.feeleen.internetMarket.Services.CategoryService;
+import ru.feeleen.internetMarket.services.CategoryService;
 import ru.feeleen.internetMarket.entities.Product;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
 import ru.feeleen.internetMarket.repositories.ProductRepository;
 
-import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;

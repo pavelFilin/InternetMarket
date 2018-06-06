@@ -1,4 +1,4 @@
-package ru.feeleen.internetMarket.RestControllers;
+package ru.feeleen.internetMarket.restControllers;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
