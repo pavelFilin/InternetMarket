@@ -12,6 +12,7 @@ import ru.feeleen.internetMarket.entities.UserContacts;
 import ru.feeleen.internetMarket.repositories.UserContactsRepository;
 import ru.feeleen.internetMarket.services.CartService;
 import ru.feeleen.internetMarket.services.OrderService;
+import ru.feeleen.internetMarket.services.UserContactsService;
 
 @Controller
 @RequestMapping("order")
@@ -23,12 +24,15 @@ public class OrderController {
     private CartService cartService;
 
     @Autowired
+    private UserContactsService userContactsService;
+
+    @Autowired
     private UserContactsRepository userContactsRepository;
 
     @GetMapping("makeorder")
     public String getMakeOder(@AuthenticationPrincipal User user, Model model) {
         Cart cart = cartService.getCartByUser(user);
-        UserContacts userContacts = userContactsRepository.findById(user.getUserContacts().getId()).get();
+        UserContacts userContacts = userContactsService.getUserContactsByUser(user);
         model.addAttribute("cart", cart);
         model.addAttribute("userContacts", userContacts);
         return "ordering";

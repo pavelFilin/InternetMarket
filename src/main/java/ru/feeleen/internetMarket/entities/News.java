@@ -1,21 +1,47 @@
 package ru.feeleen.internetMarket.entities;
 
 import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Date;
+
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 @Entity
 @Table(name = "news")
 public class News {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", insertable = false, updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
     @Column(name = "title")
     private String title;
-    @Column(name = "description")
-    private String description;
+
+    @Column(name = "text")
+    private String text;
+
+    @Column(name = "imageURL")
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     private User user;
+
+
+    @Column(name = "date_created")
+    @Temporal(TIMESTAMP)
+    private Date dateCreated;
+
+
+    public News() {
+    }
+
+    public News(String title, String text, User user) {
+        this.title = title;
+        this.text = text;
+        this.user = user;
+        dateCreated = new Date(Calendar.getInstance().getTimeInMillis());
+    }
 
     public Long getId() {
         return id;
@@ -33,12 +59,20 @@ public class News {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getText() {
+        return text;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public User getUser() {
@@ -47,5 +81,15 @@ public class News {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }

@@ -15,13 +15,13 @@
                                     aria-controls="navbarToggleExternalContent"
                                     aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="list-group-item list-group-item-dark"><a
-                                        href="#">${categoryNode.node.title}</a></span>
+                                        href="/categories/${categoryNode.node.getId()}">${categoryNode.node.title}</a></span>
                             </button>
                         </nav>
                         <div class="collapse" id="targetCategory${categoryNode?counter}">
                             <ul class="list-group">
                                <#list categoryNode.categories as subcate>
-                                   <li class="list-group-item"><a href="#"> ${subcate.node.getTitle()}</a></li>
+                                   <li class="list-group-item"><a href="/categories/${subcate.node.getId()}"> ${subcate.node.getTitle()}</a></li>
                                </#list>
                             </ul>
                         </div>

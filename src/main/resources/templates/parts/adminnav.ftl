@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/categories/diagram">Список категорий</a>
                 </li>
+                <li>
+                    <a class="nav-link" href="/news/addnews">add new news</a>
+                </li>
             </ul>
 
         </div>

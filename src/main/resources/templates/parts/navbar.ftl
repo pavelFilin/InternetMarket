@@ -12,7 +12,7 @@
                         <a class="nav-link" href="#">Магазины</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Новости</a>
+                        <a class="nav-link" href="/news">Новости</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Контакты</a>

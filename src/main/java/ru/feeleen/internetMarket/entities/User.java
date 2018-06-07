@@ -37,6 +37,9 @@ public class User implements UserDetails {
     private Cart cart;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<News> news;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 
 //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -64,6 +67,13 @@ public class User implements UserDetails {
         SecondName = secondName;
     }
 
+    public List<News> getNews() {
+        return news;
+    }
+
+    public void setNews(List<News> news) {
+        this.news = news;
+    }
 
     public List<Order> getOrders() {
         return orders;

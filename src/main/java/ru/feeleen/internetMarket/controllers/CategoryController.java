@@ -5,17 +5,25 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.feeleen.internetMarket.entities.Product;
 import ru.feeleen.internetMarket.services.CategoryService;
 import ru.feeleen.internetMarket.entities.Category;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
+import ru.feeleen.internetMarket.services.ProductService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("diagram")
@@ -47,4 +55,17 @@ public class CategoryController {
         categoryRepository.delete(category);
         return "redirect:/categories";
     }
+
+    @GetMapping("{category}")
+    public String getCategory(@PathVariable Category category, Model model) {
+        List<Category> subCategories = categoryService.getSubCategories(category);
+        List<Product> products = productService.findByCategory(category);
+        model.addAttribute("subcategories", subCategories);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categoryService.getTreeCategories());
+        return "category";
+
+    }
+
+
 }

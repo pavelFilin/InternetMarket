@@ -13,8 +13,11 @@
             <div class="mt-3">
                 <form method="post" action="/user/profile/changefirstname">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-firstName">Имя</span>
+                        </div>
                         <input name="firstName" value="${firstName}" type="text" class="form-control" placeholder="Имя"
-                               aria-describedby="basic-addon">
+                               aria-describedby="basic-addon-firstName">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">
@@ -25,8 +28,11 @@
             <div class="mt-3">
                 <form method="post" action="/user/profile/changesecondname">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-secondName">Фамилия</span>
+                        </div>
                         <input name="secondName" value="${secondName}" type="text" class="form-control"
-                               placeholder="Имя" aria-describedby="basic-addon">
+                               placeholder="Имя" aria-describedby="basic-addon-secondName">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">
@@ -37,8 +43,11 @@
             <div class="mt-3">
                 <form method="post" action="/user/profile/setAddress">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-address">Адрес</span>
+                        </div>
                         <input name="address" value="${userContacts.getAddress()?if_exists}" type="text"
-                               class="form-control" placeholder="Адрес" aria-describedby="b asic-addon">
+                               class="form-control" placeholder="Адрес" aria-describedby="b asic-addon-address">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">
@@ -49,8 +58,11 @@
             <div class="mt-3">
                 <form method="post" action="/user/profile/setcity">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-city">Город</span>
+                        </div>
                         <input name="city" value="${userContacts.getCity()?if_exists}" type="text" class="form-control"
-                               placeholder="Город" aria-describedby="basic-addon">
+                               placeholder="Город" aria-describedby="basic-addon-city">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">
@@ -59,10 +71,13 @@
                 </form>
             </div>
             <div class="mt-3">
-                <form method="post" action="/user/profile/setcountry">
+                <form method="post" action="/user/profile/setcountry-country">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-country">Страна</span>
+                        </div>
                         <input name="country" value="${userContacts.getCountry()?if_exists}" type="text"
-                               class="form-control" placeholder="Страна" aria-describedby="basic-addon">
+                               class="form-control" placeholder="Страна" aria-describedby="basic-addon-country">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">
@@ -73,8 +88,11 @@
             <div class="mt-3">
                 <form method="post" action="/user/profile/setphone">
                     <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-phone">Телефон</span>
+                        </div>
                         <input name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control"
-                               placeholder="Телефон" aria-describedby="basic-addon">
+                               placeholder="Телефон" aria-describedby="basic-addon-phone">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-outline-primary" value="save">

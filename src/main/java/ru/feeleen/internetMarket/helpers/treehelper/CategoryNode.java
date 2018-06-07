@@ -1,8 +1,7 @@
-package ru.feeleen.internetMarket.treehelper;
+package ru.feeleen.internetMarket.helpers.treehelper;
 
 import ru.feeleen.internetMarket.entities.Category;
 
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -44,14 +44,14 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Назвавние</span>
                                                 </div>
-                                                <input name="title" type="text" class="form-control" name="productName"
+                                                <input name="name" type="text" class="form-control" name="productName"
                                                        placeholder="Название товара">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="parent">Категория</label>
-                                                <select name="category" class="form-control" >
+                                                <select name="category" class="form-control">
                                                     <option>NONE</option>
                                          <#list categories as category>
                                              <option>${category.title}</option>
@@ -76,8 +76,6 @@
                                             <small  class="form-text text-muted">Если есть!</small>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -86,10 +84,11 @@
                                     <textarea name="description" class="form-control"></textarea>
                                 </div>
 
-                                <div class="row justify-content-center"><div class="col-md-4">
-                                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                    <input type="submit" class="btn btn-primary">
-                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="col-md-4">
+                                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                        <input type="submit" class="btn btn-primary">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -97,6 +96,5 @@
                 </div>
             </div>
         </div>
-
     <@c.footer/>
 </@c.page>

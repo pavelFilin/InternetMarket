@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.feeleen.internetMarket.entities.Category;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
-import ru.feeleen.internetMarket.treehelper.CategoryNode;
+import ru.feeleen.internetMarket.helpers.treehelper.CategoryNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,7 +26,6 @@ public class CategoryService {
             categoryRepository.save(category);
         }
     }
-
 
     public List<CategoryNode> getTreeCategories() {
         List<Category> categoriesDB = (List<Category>) categoryRepository.findAll();
@@ -54,7 +53,6 @@ public class CategoryService {
         return resultTreeOfCategories;
     }
 
-
     public boolean goToTree(CategoryNode node, Category category) {
         if (node == null) return false;
         if (node.getNode().getTitle() == category.getParent().getTitle()) {
@@ -73,7 +71,9 @@ public class CategoryService {
         return false;
     }
 
-
+    public List<Category> getSubCategories(Category category) {
+        return categoryRepository.findByParent(category);
+    }
 
     private boolean findCategoryInList(List<Category> list, Category category) {
         for (Category cate : list) {
