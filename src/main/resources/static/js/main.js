@@ -1,4 +1,8 @@
 function ajaxAddToCart(productId) {
+    if (!document.getElementById('cart-button')) {
+        document.location.href = "/user/profile";
+        return;
+    }
     var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ajaxSend(function (e, xhr, options) {

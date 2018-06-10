@@ -33,7 +33,7 @@ public class RegistrationController {
             return "registration";
         } else
 
-            return "redirect:/login";
+            return "login";
     }
 
     @GetMapping("/activate/{code}")

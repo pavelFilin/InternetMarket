@@ -1,6 +1,5 @@
 package ru.feeleen.internetMarket.services;
 
-import freemarker.template.utility.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,8 @@ import ru.feeleen.internetMarket.helpers.fileHelpers.FileHelper;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
 import ru.feeleen.internetMarket.repositories.ProductRepository;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -36,7 +33,7 @@ public class ProductService {
         if (!StringUtils.isEmpty(path)) {
             product.setImageUrl(path);
         }
-
+        product.setAvailable(true);
         productRepository.save(product);
     }
 
@@ -47,8 +44,11 @@ public class ProductService {
     public List<Product> findByCategory(Category category) {
         return productRepository.findByCategory(category);
     }
+    public List<Product> findByCategoryAndAvailable(Category category, boolean available){
+        return productRepository.findAllByCategoryAndAvailable(category, available);
+    }
 
-    public void updateProduct(Product product, String name, Integer price, String category, String description, Integer warrantyMonths, MultipartFile file)
+    public void updateProduct(Product product, String name, Integer price, String category, String description, Integer warrantyMonths, MultipartFile file, boolean available)
             throws IOException {
         if (!StringUtils.isEmpty(name)) {
             product.setName(name);
@@ -71,8 +71,16 @@ public class ProductService {
             product.setPrice(price);
         }
 
+        product.setAvailable(available);
+
         product.setWarrantyMonths(warrantyMonths);
 
         productRepository.save(product);
     }
+
+    public List<Product> findByAvailable(boolean available){
+        return productRepository.findAllByAvailable(available);
+    }
+
+
 }

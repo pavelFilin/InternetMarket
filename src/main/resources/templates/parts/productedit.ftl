@@ -22,8 +22,13 @@
                         </div>
                         <input name="name" type="text" class="form-control" name="productName"
                                placeholder="Название товара" value="${product.name}">
+                            <input name="available" <#if product.available>checked</#if> class="form-check-input ml-2" type="checkbox" id="autoSizingCheck2">
+                        <label class="form-check-label" for="autoSizingCheck2">
+                            Доступно
+                        </label>
                     </div>
                 </div>
+
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="parent">Категория</label>

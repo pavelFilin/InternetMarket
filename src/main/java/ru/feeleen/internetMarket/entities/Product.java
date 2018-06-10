@@ -29,6 +29,9 @@ public class Product {
     @Column(name = "warrantyMonths")
     private Integer warrantyMonths;
 
+    @Column(name = "available")
+    private boolean available;
+
     public Product() {
     }
 
@@ -94,5 +97,13 @@ public class Product {
 
     public void setWarrantyMonths(Integer warrantyMonths) {
         this.warrantyMonths = warrantyMonths;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

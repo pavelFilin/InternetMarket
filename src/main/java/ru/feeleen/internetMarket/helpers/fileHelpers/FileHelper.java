@@ -14,13 +14,13 @@ public class FileHelper {
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
+
             String uuidFile = UUID.randomUUID().toString();
             String resultFileName = uuidFile + "." + file.getOriginalFilename();
 
             file.transferTo(new File(uploadDir + "/" + resultFileName));
             return resultFileName;
         }
-
         return null;
     }
 }

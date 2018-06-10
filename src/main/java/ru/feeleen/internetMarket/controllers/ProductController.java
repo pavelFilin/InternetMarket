@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.feeleen.internetMarket.entities.Category;
 import ru.feeleen.internetMarket.entities.Product;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
 import ru.feeleen.internetMarket.repositories.ProductRepository;
@@ -20,9 +19,6 @@ import java.io.IOException;
 public class ProductController {
     @Autowired
     private ProductService productService;
-
-    @Autowired
-    private ProductRepository productRepository;
 
     @Autowired
     private CategoryService categoryService;
@@ -71,9 +67,10 @@ public class ProductController {
             @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
             @RequestParam String category,
             @RequestParam String description,
-            @RequestParam(value = "file", required = false) MultipartFile file
+            @RequestParam(value = "file", required = false) MultipartFile file,
+            @RequestParam(required = false) boolean available
     ) throws IOException {
-        productService.updateProduct(product, name, price, category, description, warrantyMonths, file);
+        productService.updateProduct(product, name, price, category, description, warrantyMonths, file, available);
         return "redirect:/product/" + product.getId();
     }
 }

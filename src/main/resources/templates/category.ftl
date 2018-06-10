@@ -21,7 +21,9 @@
                         <div class="collapse" id="targetCategory${categoryNode?counter}">
                             <ul class="list-group">
                                <#list categoryNode.categories as subcate>
-                                   <li class="list-group-item"><a href="/categories/${subcate.node.getId()}"> ${subcate.node.getTitle()}</a></li>
+                                   <li class="list-group-item"><a
+                                           href="/categories/${subcate.node.getId()}"> ${subcate.node.getTitle()}</a>
+                                   </li>
                                </#list>
                             </ul>
                         </div>
@@ -34,18 +36,11 @@
         <div class="col-md-9">
             <div class="row" id="subcategories">
                 <div class="offset-1 col-md-10 alert-info"><#list subcategories as subcategory>
-                    <div class="col-4"><span><a href="/categories/${subcategory.getId()}">${subcategory.getTitle()}</a></span></div>
+                    <div class="col-4"><span><a href="/categories/${subcategory.getId()}">${subcategory.getTitle()}</a></span>
+                    </div>
                 </#list></div>
             </div>
-            <div class="row" id="search">
-                <div class="input-group search-place">
-                    <input type="text" class="form-control" placeholder="Поиск" aria-label="Search term"
-                           aria-describedby="basic-addon">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button">Найти!</button>
-                    </div>
-                </div>
-            </div>
+           <#include "parts/search.ftl">
             <div class="row" id="product-list">
                 <div class="col-12 mb-3">
                         <#list products as product>
@@ -67,7 +62,7 @@
                             <#if ((product?counter-1)%4)==3||product?is_last&&product>
                                 </div>
                             </#if>
-                            <#else >
+                        <#else >
                             <div class="alert-info">
                                 <h2>Нет товаров</h2>
                             </div>

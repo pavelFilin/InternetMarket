@@ -9,7 +9,7 @@
 <!--Сontent-->
 <div class="container-fluid" id="content">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-6 col-xl-3">
             <div class="mt-3">
                 <form method="post" action="/user/profile/changefirstname">
                     <div class="input-group">
@@ -101,23 +101,6 @@
                 </form>
             </div>
         </div>
-    <#--<div class="col-md-2">-->
-    <#--<h2>Пароль</h2>-->
-    <#--<form>-->
-    <#--<div class="form-group input-group">-->
-    <#--<input name="oldPassword" class="form-control" placeholder="старый пароль" type="password">-->
-    <#--</div>-->
-    <#--<div class="form-group input-group">-->
-    <#--<input name="new" class="form-control" placeholder="новый пароль" type="password">-->
-    <#--</div>-->
-    <#--<div class="form-group input-group">-->
-    <#--<input name="" class="form-control" placeholder="повторить пароль" type="password">-->
-    <#--</div>-->
-    <#--<div class="form-group">-->
-    <#--<button type="submit" class="btn btn-primary btn-block">Сменить пароль</button>-->
-    <#--</div>-->
-    <#--</form>-->
-    <#--</div>-->
     </div>
     <div class="row justify-content-center">
         <div class="col-md-12">

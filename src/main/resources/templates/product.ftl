@@ -35,15 +35,7 @@
 
 
                 <div class="col-md-9 bg-light text-dark">
-                    <div class="row">
-                        <div class="input-group search-place">
-                            <input type="text" class="form-control" placeholder="Поиск" aria-label="Search term"
-                                   aria-describedby="basic-addon">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button">Найти!</button>
-                            </div>
-                        </div>
-                    </div>
+                    <#include "parts/search.ftl">
 
                     <#if isAdmin>
                         <#include "parts/productedit.ftl">
@@ -74,9 +66,8 @@
                                 <div class="col"><h5 class="text-primary">${product.price} Р</h5></div>
                             </div>
                             <div class="row">
-                                <div class="btn-group">
-                                    <button class="btn btn-outline-primary" >Купить</button>
-                                </div>
+                                <a href="javascript:void(0);" onclick="ajaxAddToCart(${product.getId()});"
+                                   class="btn btn-primary">Купить</a>
                             </div>
                         </div>
                         <div class="row">

@@ -76,6 +76,7 @@ public class UserController {
         Set<String> roles = Arrays.stream(Role.values())
                 .map(Role::name)
                 .collect(Collectors.toSet());
+
         for (String key : form.keySet()) {
             if (roles.contains(key)){
                 user.getRoles().add(Role.valueOf(key));
@@ -114,6 +115,7 @@ public class UserController {
         userService.setCountry(user, country);
         return "redirect:/user/profile";
     }
+
     @PostMapping("profile/setphone")
     public String setPhone(@RequestParam String phone, @AuthenticationPrincipal User user){
         userService.setPhone(user, phone);

@@ -1,8 +1,11 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/categories.ftl" as categoriesSpace>
-
+<#include "parts/security.ftl">
 <@c.page>
  <!--Сontent-->
+        <#if isAdmin>
+            <#include "parts/adminnav.ftl">
+        </#if>
         <div class="container-fluid my-2" id="content">
             <div class="row">
                 <div class="col-md-6 bg-light text-dark offset-3">

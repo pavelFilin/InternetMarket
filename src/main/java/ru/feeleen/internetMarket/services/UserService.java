@@ -89,7 +89,7 @@ public class UserService implements UserDetailsService {
         UserContacts userContacts = getUserContactsFromDataBase(user);
 
         User UserDTO = userRepository.findByEmail(user.getEmail());
-        if (address != null && !address.isEmpty() && address != userContacts.getAddress()) {
+        if (address != null && address != userContacts.getAddress()) {
             userContacts.setAddress(address);
             userContactsRepository.save(userContacts);
             return true;
@@ -101,7 +101,7 @@ public class UserService implements UserDetailsService {
 
     public boolean setCity(User user, String city) {
         UserContacts userContacts = getUserContactsFromDataBase(user);
-        if (city != null && !city.isEmpty() && city != userContacts.getCity()) {
+        if (city != null && city != userContacts.getCity()) {
             userContacts.setCity(city);
             userContactsRepository.save(userContacts);
             return true;
@@ -112,7 +112,7 @@ public class UserService implements UserDetailsService {
 
     public boolean setCountry(User user, String country) {
         UserContacts userContacts = getUserContactsFromDataBase(user);
-        if (country != null && !country.isEmpty() && country != userContacts.getCountry()) {
+        if (country != null && country != userContacts.getCountry()) {
             userContacts.setCountry(country);
             userContactsRepository.save(userContacts);
             return true;
@@ -124,7 +124,7 @@ public class UserService implements UserDetailsService {
     public boolean setPhone(User user, String phone) {
         UserContacts userContacts = getUserContactsFromDataBase(user);
 
-        if (phone != null && !phone.isEmpty() && phone != userContacts.getPhone()) {
+        if (phone != null && phone != userContacts.getPhone()) {
             userContacts.setPhone(phone);
             userContactsRepository.save(userContacts);
             return true;

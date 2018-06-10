@@ -59,12 +59,11 @@ public class CategoryController {
     @GetMapping("{category}")
     public String getCategory(@PathVariable Category category, Model model) {
         List<Category> subCategories = categoryService.getSubCategories(category);
-        List<Product> products = productService.findByCategory(category);
+        List<Product> products = productService.findByCategoryAndAvailable(category, true);
         model.addAttribute("subcategories", subCategories);
         model.addAttribute("products", products);
         model.addAttribute("categories", categoryService.getTreeCategories());
         return "category";
-
     }
 
 
