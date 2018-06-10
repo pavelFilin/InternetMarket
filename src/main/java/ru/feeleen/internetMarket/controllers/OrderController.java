@@ -39,7 +39,7 @@ public class OrderController {
     }
 
     @PostMapping("makeorder")
-    public String MakeOder(@AuthenticationPrincipal User user, @RequestParam Cart cart, @RequestParam String address, @RequestParam String phone) {
+    public String MakeOrder(@AuthenticationPrincipal User user, @RequestParam Cart cart, @RequestParam String address, @RequestParam String phone) {
         orderService.makeOrder(user, cart, address, phone);
         cartService.clearCart(cart.getId());
 
@@ -48,13 +48,12 @@ public class OrderController {
 
     @GetMapping("{order}")
     public String getOrder(@AuthenticationPrincipal User user, @PathVariable Order order, Model model) {
-        if (user.isAdmin() || orderService.findAllByUser(user).contains(order)){
+        if (user.isAdmin() || orderService.findAllByUser(user).contains(order)) {
             model.addAttribute("order", order);
             model.addAttribute("userContacts", userContactsRepository.findById(order.getUser().getUserContacts().getId()).get());
             return "order";
         } else{
             return null;
         }
-
     }
 }

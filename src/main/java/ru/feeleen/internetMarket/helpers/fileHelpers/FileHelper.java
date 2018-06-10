@@ -9,7 +9,7 @@ import java.util.UUID;
 public class FileHelper {
     public static String loadFile(MultipartFile file, String uploadPath) throws IOException {
 
-        if (file != null) {
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();

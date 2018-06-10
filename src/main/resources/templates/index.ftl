@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 
 <@c.page>
 <div class="container-fluid" id="content">
@@ -98,6 +99,8 @@
                                         <p class="card-text">${product.description}</p>
                                         <a href="javascript:void(0);" onclick="ajaxAddToCart(${product.getId()});"
                                            class="btn btn-primary">Купить</a>
+                                        <#if isAdmin><a href="" class="btn btn-warning">Редактировать</a>
+                                        </#if>
                                     </div>
                                     <div class="card-footer">
                                         <h4 class="text-info">${product.price} Р</h4>

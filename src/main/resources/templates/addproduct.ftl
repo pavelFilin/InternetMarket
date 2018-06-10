@@ -3,28 +3,9 @@
 
 <@c.page>
  <!--Сontent-->
-        <div class="container-fluid" id="content">
+        <div class="container-fluid my-2" id="content">
             <div class="row">
                 <div class="col-md-6 bg-light text-dark offset-3">
-                    <div class="row">
-                        <div class="input-group search-place">
-                            <input type="text" class="form-control" placeholder="Поиск" aria-label="Search term"
-                                   aria-describedby="basic-addon">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="button">Найти!</button>
-                            </div>
-                        </div>
-                    </div>
-                <#--<div class="row">-->
-                <#--<nav aria-label="breadcrumb">-->
-                <#--<ol class="breadcrumb small" style="margin-bottom: 0">-->
-                <#--<li class="breadcrumb-item"><a href="#">Категория</a></li>-->
-                <#--<li class="breadcrumb-item"><a href="#">Саб категория</a></li>-->
-                <#--<li class="breadcrumb-item"><a href="#">Сабсаб категория</a></li>-->
-                <#--<li class="breadcrumb-item active" aria-current="page">Сабсабсаб категория</li>-->
-                <#--</ol>-->
-                <#--</nav>-->
-                <#--</div>-->
                     <div class="row">
                         <div class="col-12 mb-4">
                             <form method="post" action="/product/addproduct" enctype="multipart/form-data">
@@ -33,8 +14,8 @@
                                         <span class="input-group-text">Фото</span>
                                     </div>
                                     <div class="custom-file ">
-                                        <input name="file" type="file" class="custom-file-input" id="inputGroupFile01">
-                                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                        <input name="file" type="file" class="" id="inputGroupFile01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3 form-inline">
@@ -53,9 +34,9 @@
                                                 <label for="parent">Категория</label>
                                                 <select name="category" class="form-control">
                                                     <option>NONE</option>
-                                         <#list categories as category>
-                                             <option>${category.title}</option>
-                                         </#list>
+                                                    <#list categories as category>
+                                                        <option>${category.title}</option>
+                                                    </#list>
                                                 </select>
                                             </div>
                                         </div>
@@ -84,8 +65,8 @@
                                     <textarea name="description" class="form-control"></textarea>
                                 </div>
 
-                                <div class="row justify-content-center">
-                                    <div class="col-md-4">
+                                <div class="row">
+                                    <div class="offset-5 col-md-4">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                                         <input type="submit" class="btn btn-primary">
                                     </div>

@@ -9,7 +9,7 @@
 <!--Сontent-->
 <div class="container-fluid" id="content">
     <div class="row justify-content-center">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
             <div class="mt-3">
                 <form method="post" action="/user/profile/changefirstname">
                     <div class="input-group">

@@ -46,14 +46,14 @@ public class CategoryController {
             @RequestParam(name = "parent", required = false) String parent
     ) {
         categoryService.saveCategory(title, parent);
-        return "redirect:/categories";
+        return "redirect:/categories/diagram  ";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("delete/{category}")
     public String userEditForm(@PathVariable Category category, Model model) {
         categoryRepository.delete(category);
-        return "redirect:/categories";
+        return "redirect:/categories/diagram";
     }
 
     @GetMapping("{category}")

@@ -46,7 +46,7 @@
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
                 </div>
-                <p class="text-center">Уже есть аккаунт? <a href="">Войти</a></p>
+                <p class="text-center">Уже есть аккаунт? <a href="/user/profile">Войти</a></p>
             </form>
         </article>
     </div>

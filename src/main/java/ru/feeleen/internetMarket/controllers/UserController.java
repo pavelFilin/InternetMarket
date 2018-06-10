@@ -14,26 +14,22 @@ import ru.feeleen.internetMarket.repositories.OrderRepository;
 import ru.feeleen.internetMarket.repositories.UserContactsRepository;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
-
     @Autowired
     private OrderService orderService;
     @Autowired
-    OrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
-    UserContactsRepository userContactsRepository;
+    private UserContactsRepository userContactsRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;

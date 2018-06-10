@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryNode {
-    Category node;
+    private Category node;
 
     private List<CategoryNode> categories = new ArrayList<>();
 

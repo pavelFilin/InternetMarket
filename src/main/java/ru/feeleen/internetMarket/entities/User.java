@@ -1,12 +1,10 @@
 package ru.feeleen.internetMarket.entities;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +16,7 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "email", length = 50, unique = true) // unique = true
+    @Column(name = "email", length = 50, unique = true)
     private String email;
 
     @Column(name = "password", length = 255)
@@ -32,6 +30,13 @@ public class User implements UserDetails {
 
     @Column(name = "active")
     private boolean active;
+
+
+    @Column(name = "activationCode")
+    private String activationCode;
+
+    @Column(name = "token")
+    private String token;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart;
@@ -103,6 +108,13 @@ public class User implements UserDetails {
         this.active = active;
     }
 
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -154,6 +166,14 @@ public class User implements UserDetails {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Set<Role> getRoles() {

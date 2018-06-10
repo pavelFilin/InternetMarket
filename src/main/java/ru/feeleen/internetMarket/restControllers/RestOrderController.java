@@ -11,9 +11,17 @@ import ru.feeleen.internetMarket.entities.ExecutionStage;
 import ru.feeleen.internetMarket.entities.Order;
 import ru.feeleen.internetMarket.entities.User;
 import ru.feeleen.internetMarket.repositories.OrderRepository;
+import ru.feeleen.internetMarket.services.MailSender;
+
+import javax.xml.ws.Service;
 
 @RestController
 public class RestOrderController {
+    private final String MAIL_SUBJECT_CHANGE_EXECUTION_STAGE = "Статус заказа изменен";
+    private final String MAIL_MESSANGE_CHANGE_EXECUTION_STAGE = "Статус заказа изменен";
+
+    @Autowired
+    private MailSender mailSender;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -26,6 +34,10 @@ public class RestOrderController {
         order.setExecutionStage(ExecutionStage.valueOf(executionStage));
 
         orderRepository.save(order);
+
+        String message  = String.format("%s: %s", MAIL_MESSANGE_CHANGE_EXECUTION_STAGE, order.getExecutionStage().name());
+        mailSender.send(order.getUser().getEmail(), MAIL_SUBJECT_CHANGE_EXECUTION_STAGE, message);
+
         return new Gson().toJson("success");
     }
 }

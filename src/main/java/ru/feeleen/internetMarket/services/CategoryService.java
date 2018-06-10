@@ -53,7 +53,7 @@ public class CategoryService {
         return resultTreeOfCategories;
     }
 
-    public boolean goToTree(CategoryNode node, Category category) {
+    private boolean goToTree(CategoryNode node, Category category) {
         if (node == null) return false;
         if (node.getNode().getTitle() == category.getParent().getTitle()) {
             CategoryNode childNode = new CategoryNode();
@@ -71,6 +71,10 @@ public class CategoryService {
         return false;
     }
 
+    public List<Category> findAll(){
+        return (List<Category>) categoryRepository.findAll();
+    }
+
     public List<Category> getSubCategories(Category category) {
         return categoryRepository.findByParent(category);
     }
@@ -84,5 +88,7 @@ public class CategoryService {
 
         return false;
     }
+
+
 
 }

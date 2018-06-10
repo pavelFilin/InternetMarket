@@ -33,7 +33,8 @@ public class ProductController {
 
     @GetMapping("{productID}")
     public String getProduct(@PathVariable("productID") Product product, Model model) {
-        model.addAttribute("categories", categoryService.getTreeCategories());
+        model.addAttribute("categoryTree", categoryService.getTreeCategories());
+        model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("product", product);
         return "product";
     }
@@ -51,7 +52,7 @@ public class ProductController {
             @RequestParam String name,
             @RequestParam("price") Integer price,
             @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
-            @RequestParam Category category,
+            @RequestParam String category,
             @RequestParam String description,
             @RequestParam("file") MultipartFile file,
             Model model
@@ -59,5 +60,20 @@ public class ProductController {
         productService.add(name, price, category, description, warrantyMonths, file);
 
         return "redirect:/product/" + productService.findByName(name).getId();
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("editproduct/{product}")
+    public String editProduct(
+            @PathVariable Product product,
+            @RequestParam String name,
+            @RequestParam("price") Integer price,
+            @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
+            @RequestParam String category,
+            @RequestParam String description,
+            @RequestParam(value = "file", required = false) MultipartFile file
+    ) throws IOException {
+        productService.updateProduct(product, name, price, category, description, warrantyMonths, file);
+        return "redirect:/product/" + product.getId();
     }
 }
