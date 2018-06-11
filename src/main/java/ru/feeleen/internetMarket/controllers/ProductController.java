@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.feeleen.internetMarket.entities.Product;
 import ru.feeleen.internetMarket.repositories.CategoryRepository;
-import ru.feeleen.internetMarket.repositories.ProductRepository;
 import ru.feeleen.internetMarket.services.CategoryService;
 import ru.feeleen.internetMarket.services.ProductService;
 
@@ -23,10 +22,6 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-
     @GetMapping("{productID}")
     public String getProduct(@PathVariable("productID") Product product, Model model) {
         model.addAttribute("categoryTree", categoryService.getTreeCategories());
@@ -38,7 +33,7 @@ public class ProductController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("addproduct")
     public String getAddProduct(Model model) {
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "addproduct";
     }
 

@@ -3,6 +3,7 @@ package ru.feeleen.internetMarket.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import ru.feeleen.internetMarket.entities.News;
 import ru.feeleen.internetMarket.entities.User;
@@ -28,5 +29,27 @@ public class NewsService {
         news.setImageUrl(FileHelper.loadFile(file, uploadPath));
         newsRepository.save(news);
         return news;
+    }
+
+    public News updateNews(News news, String title, String text, MultipartFile file) throws IOException {
+        if (!StringUtils.isEmpty(title)){
+            news.setTitle(title);
+        }
+
+        if (!StringUtils.isEmpty(text)){
+            news.setText(text);
+        }
+
+        String path = FileHelper.loadFile(file, uploadPath);
+        if (!StringUtils.isEmpty(path)) {
+            news.setImageUrl(path);
+        }
+
+        newsRepository.save(news);
+        return news;
+    }
+
+    public List<News> findAllByOrderByDateCreatedDesc() {
+        return newsRepository.findAllByOrderByDateCreatedDesc();
     }
 }

@@ -63,8 +63,6 @@ public class ProductService {
         String path = FileHelper.loadFile(file, uploadPath);
         if (!StringUtils.isEmpty(path)) {
             product.setImageUrl(path);
-        } else {
-            product.setImageUrl(generalPicture);
         }
 
         if (price!=null) {

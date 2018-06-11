@@ -25,7 +25,7 @@ public class NewsController {
     @GetMapping
     public String getNews(Model model) {
 
-        model.addAttribute("news", newsRepository.findAll());
+        model.addAttribute("news", newsService.findAllByOrderByDateCreatedDesc());
         return "news";
     }
 
@@ -52,6 +52,16 @@ public class NewsController {
     ) throws IOException {
         News news = newsService.add(title, text, user, file);
         model.addAttribute("news", news);
+        return "redirect:/news/" + news.getId();
+    }
+
+    @PostMapping("newsedit/{news}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String editNews(@PathVariable News news,
+                           @RequestParam String title,
+                           @RequestParam String text,
+                           @RequestParam("file") MultipartFile file) throws IOException {
+        newsService.updateNews(news, title, text ,file);
         return "redirect:/news/" + news.getId();
     }
 }
