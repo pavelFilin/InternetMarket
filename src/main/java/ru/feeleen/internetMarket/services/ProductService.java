@@ -64,6 +64,8 @@ public class ProductService {
         String path = FileHelper.loadFile(file, uploadPath);
         if (!StringUtils.isEmpty(path)) {
             product.setImageUrl(path);
+        } else {
+            product.setImageUrl(generalPicture);
         }
 
         if (price != null) {
@@ -80,6 +82,4 @@ public class ProductService {
     public List<Product> findByAvailable(boolean available) {
         return productRepository.findAllByAvailable(available);
     }
-
-
 }

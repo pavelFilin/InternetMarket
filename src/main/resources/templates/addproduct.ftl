@@ -44,7 +44,6 @@
                                             <div class="form-group">
                                                 <label for="parent">Категория</label>
                                                 <select name="categoryTemp" class="form-control">
-                                                    <option>NONE</option>
                                                     <#list categories as category>
                                                         <option>${category.title}</option>
                                                     </#list>

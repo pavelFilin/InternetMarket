@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="">
-                                <img src="/img/${product.imageUrl}" class="img-fluid">
+                                <img src="/img/${product.imageUrl?if_exists}" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-md-6 ">
