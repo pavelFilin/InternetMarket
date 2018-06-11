@@ -66,18 +66,27 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("editproduct/{product}")
+    @PostMapping("editproduct/{productCurrent}")
     public String editProduct(
-            @PathVariable Product product,
-            @RequestParam String name,
-            @RequestParam("price") Integer price,
-            @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
-            @RequestParam String category,
-            @RequestParam String description,
-            @RequestParam(value = "file", required = false) MultipartFile file,
-            @RequestParam(required = false) boolean available
+            @PathVariable Product productCurrent,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam String categoryTemp,
+            @Valid Product product,
+            BindingResult bindingResult,
+            Model model
+
     ) throws IOException {
-        productService.updateProduct(product, name, price, category, description, warrantyMonths, file, available);
-        return "redirect:/product/" + product.getId();
+        if (bindingResult.hasErrors()){
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            System.out.println("errors");
+            model.addAttribute("categoryTree", categoryService.getTreeCategories());
+            model.addAttribute("categories", categoryService.findAll());
+            model.addAttribute("product", product);
+            return "redirect:/product/" + productCurrent.getId();
+        } else {
+            productService.updateProduct(productCurrent, product.getName(), product.getPrice(), categoryTemp, product.getDescription(), product.getWarrantyMonths(), file, product.isAvailable());
+        }
+        return "redirect:/product/" + productCurrent.getId();
     }
 }

@@ -20,9 +20,16 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Назвавние</span>
                         </div>
-                        <input name="name" type="text" class="form-control" name="productName"
+                        <input name="name" type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
+                               name="productName"
                                placeholder="Название товара" value="${product.name}">
-                            <input name="available" <#if product.available>checked</#if> class="form-check-input ml-2" type="checkbox" id="autoSizingCheck2">
+                        <#if nameError??>
+                            <div class="invalid-feedback">
+                                ${nameError}
+                            </div>
+                        </#if>
+                        <input name="available" <#if product.available>checked</#if> class="form-check-input ml-2"
+                               type="checkbox" id="autoSizingCheck2">
                         <label class="form-check-label" for="autoSizingCheck2">
                             Доступно
                         </label>
@@ -32,9 +39,10 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="parent">Категория</label>
-                        <select name="category" class="form-control">
+                        <select name="categoryTemp" class="form-control">
                         <#list categories as category>
-                            <option <#if product.category.title==category.title>selected</#if>>${category.title}</option>
+                            <option
+                                <#if product.category.title==category.title>selected</#if>>${category.title}</option>
                         </#list>
                         </select>
                     </div>
@@ -46,8 +54,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="productPrise">Цена</label>
-                    <input name="price" type="number" value="${product.price?string["0"]}" class="form-control form-control-lg"
+                    <input name="price" type="number" value="${product.price?string["0"]}"
+                           class="${(priceError??)?string('is-invalid', '')} form-control form-control-lg"
                            id="productPrice">
+                     <#if priceError??>
+                         <div class="invalid-feedback">
+                             ${priceError}
+                         </div>
+                     </#if>
                 </div>
                 <div class="col-md-6">
                     <label for="productPrise">Гарантия</label>
@@ -61,13 +75,19 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Описание</span>
             </div>
-            <textarea name="description" class="form-control">${product.description}</textarea>
+            <textarea name="description" class="form-control ${(Error??)?string('is-invalid', '')}">${product.description}</textarea>
+            <#if descriptionError??>
+             <div class="invalid-feedback">
+                 ${descriptionError}
+             </div>
+            </#if>
         </div>
 
         <div class="row">
             <div class="offset-5 col-md-4">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <input type="submit" class="btn btn-primary" value="Сохранить">
+
             </div>
         </div>
     </form>

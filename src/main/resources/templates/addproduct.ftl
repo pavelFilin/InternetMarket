@@ -83,7 +83,7 @@
                                         <span class="input-group-text">Описание</span>
                                     </div>
                                     <textarea name="description"
-                                              class="form-control ${(descriptionError??)?string('is-invalid', '')}"><#if product??>${(product.description?if_exists)}</#if></textarea>
+                                              class="form-control ${(Error??)?string('is-invalid', '')}"><#if product??>${(product.description?if_exists)}</#if></textarea>
                                      <#if descriptionError??>
                                             <div class="invalid-feedback">
                                                 ${descriptionError}
