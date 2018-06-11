@@ -3,7 +3,7 @@
 <#include "parts/security.ftl">
 <@c.page>
  <!--Сontent-->
-        <#include "parts/adminnav.ftl">
+    <#include "parts/adminnav.ftl">
         <div class="container-fluid" id="content">
             <div class="row">
                 <div class="col-md-6 bg-light text-dark offset-3">
@@ -26,8 +26,16 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Заголовок</span>
                                                 </div>
-                                                <input name="title" type="text" class="form-control" name="productName"
+                                                <input name="title" type="text"
+
+                                                       class="form-control ${(titleError??)?string('is-invalid', '')}"
+                                                       name="productName"
                                                        placeholder="Заголовок">
+                                                 <#if titleError??>
+                                                    <div class="invalid-feedback">
+                                                        ${titleError}
+                                                    </div>
+                                                 </#if>
                                             </div>
                                         </div>
                                     </div>
@@ -37,9 +45,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Описание</span>
                                     </div>
-                                    <textarea name="text" class="form-control"></textarea>
+                                    <textarea name="text" class="form-control ${(textError??)?string('is-invalid', '')}"></textarea>
+                                    <#if textError??>
+                                      <div class="invalid-feedback">
+                                          ${textError}
+                                      </div>
+                                    </#if>
                                 </div>
-
                                 <div class="row justify-content-center">
                                     <div class="col-md-4">
                                         <input type="hidden" name="_csrf" value="${_csrf.token}">
