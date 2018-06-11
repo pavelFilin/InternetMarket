@@ -47,7 +47,6 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singleton(Role.USER));
 
@@ -170,6 +169,7 @@ public class UserService implements UserDetailsService {
         }
 
         user.setActivationCode("null");
+        user.setActive(true);
         userRepository.save(user);
         return true;
     }
