@@ -48,7 +48,7 @@
                                 <div class="card-deck">
                             </#if>
                             <div class="card mb-4">
-                                <img class="card-img-top" src="/img/${product.imageUrl}" alt="${product.name}">
+                                <img class="card-img-top" src="/img/${product.imageUrl?if_exists}" alt="${product.name}">
                                 <div class="card-body">
                                     <a href="/product/${product.id}"><h5 class="card-title">${product.name}</h5></a>
                                     <p class="card-text">${product.description}</p>
@@ -59,7 +59,7 @@
                                     <h4 class="text-info">${product.price} Р</h4>
                                 </div>
                             </div>
-                            <#if ((product?counter-1)%4)==3||product?is_last&&product>
+                            <#if ((product?counter-1)%4)==3||product?is_last>
                                 </div>
                             </#if>
                         <#else >

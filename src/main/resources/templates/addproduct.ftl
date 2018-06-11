@@ -3,9 +3,9 @@
 <#include "parts/security.ftl">
 <@c.page>
  <!--Сontent-->
-        <#if isAdmin>
-            <#include "parts/adminnav.ftl">
-        </#if>
+    <#if isAdmin>
+        <#include "parts/adminnav.ftl">
+    </#if>
         <div class="container-fluid my-2" id="content">
             <div class="row">
                 <div class="col-md-6 bg-light text-dark offset-3">
@@ -28,14 +28,22 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Назвавние</span>
                                                 </div>
-                                                <input name="name" type="text" class="form-control" name="productName"
+                                                <input name="name" type="text"
+                                                       value="<#if product??>${product.name}</#if>"
+                                                       class="form-control ${(nameError??)?string('is-invalid', '')}"
+                                                       name="productName"
                                                        placeholder="Название товара">
+                                                <#if nameError??>
+                                                    <div class="invalid-feedback">
+                                                        ${nameError}
+                                                    </div>
+                                                </#if>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="parent">Категория</label>
-                                                <select name="category" class="form-control">
+                                                <select name="categoryTemp" class="form-control">
                                                     <option>NONE</option>
                                                     <#list categories as category>
                                                         <option>${category.title}</option>
@@ -50,14 +58,23 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="productPrise">Цена</label>
-                                            <input name="price" type="number" class="form-control form-control-lg" id="productPrice"
+                                            <input name="price" type="number"
+                                                   value="<#if product??>${(product.price?if_exists)}</#if>"
+                                                   class="${(priceError??)?string('is-invalid', '')} form-control form-control-lg"
+                                                   id="productPrice"
                                                    placeholder="">
+                                            <#if priceError??>
+                                            <div class="invalid-feedback">
+                                                ${priceError}
+                                            </div>
+                                            </#if>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="productPrise">Гарантия</label>
-                                            <input name="warrantyMonths" type="number" class="form-control form-control-lg"
+                                            <input name="warrantyMonths" type="number"
+                                                   class="form-control form-control-lg"
                                                    placeholder="">
-                                            <small  class="form-text text-muted">Если есть!</small>
+                                            <small class="form-text text-muted">Если есть!</small>
                                         </div>
                                     </div>
                                 </div>
@@ -65,8 +82,15 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Описание</span>
                                     </div>
-                                    <textarea name="description" class="form-control"></textarea>
+                                    <textarea name="description"
+                                              class="form-control ${(descriptionError??)?string('is-invalid', '')}"><#if product??>${(product.description?if_exists)}</#if></textarea>
+                                     <#if descriptionError??>
+                                            <div class="invalid-feedback">
+                                                ${descriptionError}
+                                            </div>
+                                     </#if>
                                 </div>
+
 
                                 <div class="row">
                                     <div class="offset-5 col-md-4">

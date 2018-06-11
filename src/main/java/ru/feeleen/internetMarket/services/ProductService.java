@@ -44,7 +44,8 @@ public class ProductService {
     public List<Product> findByCategory(Category category) {
         return productRepository.findByCategory(category);
     }
-    public List<Product> findByCategoryAndAvailable(Category category, boolean available){
+
+    public List<Product> findByCategoryAndAvailable(Category category, boolean available) {
         return productRepository.findAllByCategoryAndAvailable(category, available);
     }
 
@@ -65,7 +66,7 @@ public class ProductService {
             product.setImageUrl(path);
         }
 
-        if (price!=null) {
+        if (price != null) {
             product.setPrice(price);
         }
 
@@ -76,7 +77,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<Product> findByAvailable(boolean available){
+    public List<Product> findByAvailable(boolean available) {
         return productRepository.findAllByAvailable(available);
     }
 

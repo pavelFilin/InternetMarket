@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.feeleen.internetMarket.entities.Product;
-import ru.feeleen.internetMarket.repositories.CategoryRepository;
+import ru.feeleen.internetMarket.helpers.ErrorHelpers.ControllerUtils;
 import ru.feeleen.internetMarket.services.CategoryService;
 import ru.feeleen.internetMarket.services.ProductService;
 
+import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("product")
@@ -40,17 +43,26 @@ public class ProductController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("addproduct")
     public String addProduct(
-            @RequestParam String name,
-            @RequestParam("price") Integer price,
-            @RequestParam(name = "warrantyMonths", required = false) Integer warrantyMonths,
-            @RequestParam String category,
-            @RequestParam String description,
             @RequestParam("file") MultipartFile file,
+            @RequestParam String categoryTemp,
+            @Valid Product product,
+            BindingResult bindingResult,
             Model model
     ) throws IOException {
-        productService.add(name, price, category, description, warrantyMonths, file);
 
-        return "redirect:/product/" + productService.findByName(name).getId();
+        if (bindingResult.hasErrors()){
+            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+
+            model.mergeAttributes(errorsMap);
+            System.out.println("errors");
+            model.addAttribute("categoryTree", categoryService.getTreeCategories());
+            model.addAttribute("categories", categoryService.findAll());
+            return "addproduct";
+        } else {
+           productService.add(product.getName(), product.getPrice(), categoryTemp, product.getDescription(), product.getWarrantyMonths(), file);
+        }
+
+         return "redirect:/product/" + productService.findByName(product.getName()).getId();
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

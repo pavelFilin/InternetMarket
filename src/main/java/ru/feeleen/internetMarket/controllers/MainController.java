@@ -20,7 +20,7 @@ public class MainController {
     @Autowired
     private ProductRepository productRepository;
 
-    private final int MAX_PRODUCT_ON_PAGE = 20;
+    private final int MAX_PRODUCT_ON_PAGE = 8;
 
     @GetMapping("/")
     public String getIndex(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
