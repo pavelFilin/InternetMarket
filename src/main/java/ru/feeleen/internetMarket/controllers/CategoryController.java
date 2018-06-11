@@ -47,7 +47,11 @@ public class CategoryController {
             @RequestParam String title,
             @RequestParam(name = "parent", required = false) String parent
     ) {
-        categoryService.saveCategory(title, parent);
+        try {
+            categoryService.saveCategory(title, parent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/categories/diagram  ";
     }
 
@@ -71,6 +75,5 @@ public class CategoryController {
         model.addAttribute("categories", categoryService.getTreeCategories());
         return "category";
     }
-
 
 }

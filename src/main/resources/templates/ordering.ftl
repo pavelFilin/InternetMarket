@@ -43,6 +43,7 @@
                         <input type= "submit" class="btn btn-outline-primary" value="Купить">
                     </div>
                 </form>
+                <#if error??><h1 class="alert-danger">${error}</h1></#if>
             </div>
         </div>
     </div>

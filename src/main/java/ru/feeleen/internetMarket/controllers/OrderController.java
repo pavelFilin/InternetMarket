@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import ru.feeleen.internetMarket.entities.Cart;
 import ru.feeleen.internetMarket.entities.Order;
@@ -17,6 +18,7 @@ import ru.feeleen.internetMarket.services.UserContactsService;
 @Controller
 @RequestMapping("order")
 public class OrderController {
+    private final String ERROR_ORDER_MESSAGE = "Заполните пустые поля";
     @Autowired
     private OrderService orderService;
 
@@ -39,7 +41,14 @@ public class OrderController {
     }
 
     @PostMapping("makeorder")
-    public String MakeOrder(@AuthenticationPrincipal User user, @RequestParam Cart cart, @RequestParam String address, @RequestParam String phone) {
+    public String MakeOrder(@AuthenticationPrincipal User user, @RequestParam Cart cart, @RequestParam String address, @RequestParam String phone, Model model) {
+        if (StringUtils.isEmpty(address) || StringUtils.isEmpty(phone) ){
+            model.addAttribute("cart", cart);
+            UserContacts userContacts = userContactsService.getUserContactsByUser(user);
+            model.addAttribute("userContacts", userContacts);
+            model.addAttribute("error", ERROR_ORDER_MESSAGE);
+            return "ordering";
+        }
         orderService.makeOrder(user, cart, address, phone);
         cartService.clearCart(cart.getId());
 

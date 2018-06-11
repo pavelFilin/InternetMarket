@@ -3,9 +3,6 @@
     <#include "parts/adminnav.ftl">
     <div class="container">
         <div class="row">
-            <h3><a class="page-link" href="/categories/addcategory">добавить категорию</a></h3>
-        </div>
-        <div class="row">
             <div class="col-md-10">
                 <table class="table table-light">
                     <thead class="table-dark">
@@ -41,6 +38,7 @@
                     <div class="form-group">
                         <label for="categoryName">Название</label>
                         <input name="title" type="text" class="form-control" id="categoryName" placeholder="Название категории">
+
                     </div>
                     <div class="form-group">
                         <label for="parent">Select parent category</label>

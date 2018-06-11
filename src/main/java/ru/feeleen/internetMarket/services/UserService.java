@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.feeleen.internetMarket.entities.Cart;
 import ru.feeleen.internetMarket.entities.Role;
@@ -32,6 +33,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private MailSender mailSender;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userRepository.findByEmail(s);
@@ -44,10 +48,19 @@ public class UserService implements UserDetailsService {
         }
 
         user.setActive(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singleton(Role.USER));
+
         user.setOrders(new ArrayList<>());
-        user.setCart(new Cart());
-        user.setUserContacts(new UserContacts());
+
+        Cart cart = new Cart();
+        cart.setUser(user);
+        user.setCart(cart);
+
+        UserContacts userContacts = new UserContacts();
+        userContacts.setUser(user);
+        user.setUserContacts(userContacts);
+
         user.setActivationCode(UUID.randomUUID().toString());
         userRepository.save(user);
 
@@ -183,7 +196,7 @@ public class UserService implements UserDetailsService {
             return false;
         }
 
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         user.setToken(null);
 
         userRepository.save(user);

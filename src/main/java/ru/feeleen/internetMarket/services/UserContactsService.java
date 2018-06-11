@@ -14,22 +14,22 @@ public class UserContactsService {
     private UserContactsRepository userContactsRepository;
 
     public UserContacts getUserContacts(Long id) {
-         return userContactsRepository.findById(id).get();
+        return userContactsRepository.findById(id).get();
     }
 
     public UserContacts getUserContactsByUser(User user) {
         UserContacts userContacts = user.getUserContacts();
 
-        if (userContacts==null) {
+        if (userContacts == null) {
             userContacts = new UserContacts();
             userContacts.setUser(user);
             user.setUserContacts(userContacts);
             return userContacts;
-        }
-
-        Optional<UserContacts> optionalUserContacts = userContactsRepository.findById(user.getUserContacts().getId());
-        if (optionalUserContacts.isPresent()){
-            userContacts =  optionalUserContacts.get();
+        } else {
+            Optional<UserContacts> optionalUserContacts = userContactsRepository.findById(user.getUserContacts().getId());
+            if (optionalUserContacts.isPresent()) {
+                userContacts = optionalUserContacts.get();
+            }
         }
 
         return userContacts;

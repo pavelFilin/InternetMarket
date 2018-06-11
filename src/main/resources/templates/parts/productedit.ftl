@@ -66,7 +66,7 @@
                 <div class="col-md-6">
                     <label for="productPrise">Гарантия</label>
                     <input name="warrantyMonths" type="number" class="form-control form-control-lg"
-                           value="${product.warrantyMonths}">
+                           value="${product.warrantyMonths?if_exists}">
                     <small class="form-text text-muted">Если есть!</small>
                 </div>
             </div>

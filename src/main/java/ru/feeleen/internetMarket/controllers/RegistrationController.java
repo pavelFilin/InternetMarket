@@ -1,23 +1,20 @@
 package ru.feeleen.internetMarket.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import ru.feeleen.internetMarket.entities.Cart;
-import ru.feeleen.internetMarket.entities.Role;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.feeleen.internetMarket.entities.User;
-import ru.feeleen.internetMarket.entities.UserContacts;
 import ru.feeleen.internetMarket.helpers.ErrorHelpers.ControllerUtils;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 import ru.feeleen.internetMarket.services.UserService;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 @Controller
@@ -77,10 +74,12 @@ public class RegistrationController {
 
     @PostMapping("/resetpassword")
     public String saveNewPassword(@RequestParam String password, @RequestParam String token, Model model) {
-        if (userService.resetPassword(password, token)) {
+        if (userService.resetPassword(password, token) && !StringUtils.isEmpty(password)) {
             model.addAttribute("message", "пароль изменен");
-        } else {
+        } else if (!StringUtils.isEmpty(password)){
             model.addAttribute("message", "Ссылка не действительна");
+        } else {
+            model.addAttribute("message", "Поле не может быть пустым");
         }
         return "login";
     }
