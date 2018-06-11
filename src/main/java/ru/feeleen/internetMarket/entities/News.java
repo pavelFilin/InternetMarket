@@ -1,6 +1,7 @@
 package ru.feeleen.internetMarket.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,10 +15,13 @@ public class News {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
+    @NotBlank(message = "Не может быть пустым")
+
     private String title;
 
-    @Column(name = "text")
+    @Column(name = "text", nullable = false)
+    @NotBlank(message = "Не может быть пустым")
     private String text;
 
     @Column(name = "imageURL")

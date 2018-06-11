@@ -1,6 +1,7 @@
 package ru.feeleen.internetMarket.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "product")
@@ -11,9 +12,11 @@ public class Product {
     private Long id;
 
     @Column(name = "name", nullable = false)
+    @NotBlank(message = "Не может быть пустым")
     private String name;
 
     @Column(name = "price", nullable = false)
+    @NotBlank(message = "Не может быть пустым")
     private Integer price;
 
     @Column(name = "image_url")

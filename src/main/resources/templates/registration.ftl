@@ -10,38 +10,47 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="firstName" class="form-control" placeholder="Имя" type="text">
+                    <input name="firstName" class="form-control ${(secondNameError??)?string('is-invalid', '')}"
+                           value="<#if user??>${user.firstName}</#if>" placeholder="Имя" type="text">
+                    <#if firstNameError??>
+                        <div class="invalid-feedback">
+                            ${firstNameError}
+                        </div>
+                    </#if>
                 </div>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="secondName" class="form-control" placeholder="Фамилия" type="text">
+                    <input name="secondName" value="<#if user??>${user.secondName}</#if>" class="form-control ${(secondNameError??)?string('is-invalid', '')}" placeholder="Фамилия" type="text">
+                     <#if secondNameError??>
+                        <div class="invalid-feedback">
+                            ${secondNameError}
+                        </div>
+                     </#if>
                 </div>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input name="email" class="form-control" placeholder="Email" type="email">
+                    <input name="email" value="<#if user??>${user.email}</#if>" class="form-control ${(emailError??)?string('is-invalid', '')}" placeholder="Email" type="email">
+                    <#if emailError??>
+                        <div class="invalid-feedback">
+                            ${emailError}
+                        </div>
+                    </#if>
                 </div>
-                <#--<div class="form-group input-group">-->
-                    <#--<div class="input-group-prepend">-->
-                        <#--<span class="input-group-text"> <i class="fa fa-phone"></i> </span>-->
-                    <#--</div>-->
-                    <#--<input name="" class="form-control" placeholder="Номер телефона" type="text">-->
-                <#--</div>-->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" placeholder="Пароль" type="password" name="password">
-                </div>
-                <#--<div class="form-group input-group">-->
-                    <#--<div class="input-group-prepend">-->
-                        <#--<span class="input-group-text"> <i class="fa fa-lock"></i> </span>-->
-                    <#--</div>-->
-                    <#--<input class="form-control" placeholder="Повторите пароль" type="password">-->
-                <#--</div>-->
+                    <input class="form-control  ${(passwordError??)?string('is-invalid', '')}" placeholder="Пароль" type="password" name="password">
+                    <#if passwordError??>
+                        <div class="invalid-feedback">
+                            ${passwordError}
+                        </div>
+                    </#if>
+                    </div>
                 <div class="form-group">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
@@ -53,5 +62,5 @@
 </div>
 
 <!--FOOTER-->
-<@c.footer/>
+    <@c.footer/>
 </@c.page>

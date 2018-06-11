@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -16,17 +18,22 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "email", length = 50, unique = true)
+    @Email(message = "Не корректный email")
+    @NotBlank(message = "Не может быть пустым")
+    @Column(name = "email", length = 50, unique = true, nullable = false)
     private String email;
 
-    @Column(name = "password", length = 255)
+    @NotBlank(message = "Не может быть пустым")
+    @Column(name = "password", length = 255, nullable = false)
     private String password;
 
-    @Column(name = "firstName", length = 50)
-    private String FirstName;
+    @NotBlank(message = "Не может быть пустым")
+    @Column(name = "firstName", length = 50, nullable = false)
+    private String firstName;
 
-    @Column(name = "secondName", length = 50)
-    private String SecondName;
+    @NotBlank(message = "Не может быть пустым")
+    @Column(name = "secondName", length = 50, nullable = false)
+    private String secondName;
 
     @Column(name = "active")
     private boolean active;
@@ -68,8 +75,8 @@ public class User implements UserDetails {
     public User(String email, String password, String firstName, String secondName) {
         this.email = email;
         this.password = password;
-        FirstName = firstName;
-        SecondName = secondName;
+        this.firstName = firstName;
+        this.secondName = secondName;
     }
 
     public List<News> getNews() {
@@ -137,19 +144,19 @@ public class User implements UserDetails {
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getSecondName() {
-        return SecondName;
+        return secondName;
     }
 
     public void setSecondName(String secondName) {
-        SecondName = secondName;
+        this.secondName = secondName;
     }
 
     public Boolean getActive() {

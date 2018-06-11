@@ -1,19 +1,24 @@
 package ru.feeleen.internetMarket.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.feeleen.internetMarket.entities.Cart;
 import ru.feeleen.internetMarket.entities.Role;
 import ru.feeleen.internetMarket.entities.User;
 import ru.feeleen.internetMarket.entities.UserContacts;
+import ru.feeleen.internetMarket.helpers.ErrorHelpers.ControllerUtils;
 import ru.feeleen.internetMarket.repositories.UserRepository;
 import ru.feeleen.internetMarket.services.UserService;
 
 import javax.jws.WebParam;
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -21,19 +26,27 @@ public class RegistrationController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+
     @GetMapping("/registration")
-    public String registration(){
+    public String registration() {
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Model model){
-        if (!userService.addUser(user)) {
-            model.addAttribute("massage", "Пользователь с таким email уже зарегистрирован");
+    public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errors);
+            model.addAttribute("user", user);
             return "registration";
-        } else
+        } else {
+            if (!userService.addUser(user)) {
+                model.addAttribute("massage", "Пользователь с таким email уже зарегистрирован");
+                return "registration";
+            }
+        }
 
-            return "login";
+        return "login";
     }
 
     @GetMapping("/activate/{code}")
@@ -42,7 +55,7 @@ public class RegistrationController {
         if (isActivated) {
             model.addAttribute("message", "Пользователь активирован");
         } else {
-            model.addAttribute("message", "Неверный код активации");    
+            model.addAttribute("message", "Неверный код активации");
         }
         return "login";
     }
@@ -54,7 +67,7 @@ public class RegistrationController {
 
     @PostMapping("/requestresetpassword")
     public String sendresetpassword(@RequestParam String email, Model model) {
-        if(userService.sendResetPasswordMail(email)) {
+        if (userService.sendResetPasswordMail(email)) {
             model.addAttribute("message", "На почту отправлено письмо для востановление пароля");
         } else {
             model.addAttribute("message", "email не найден");
@@ -77,4 +90,4 @@ public class RegistrationController {
         model.addAttribute("token", token);
         return "resetpassword";
     }
- }
+}

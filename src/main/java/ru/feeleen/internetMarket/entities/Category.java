@@ -1,6 +1,7 @@
 package ru.feeleen.internetMarket.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -11,6 +12,7 @@ public class Category {
     private Long id;
 
     @Column(name = "title", nullable = false)
+    @NotBlank(message = "Не может быть пустым")
     private String title;
 
     @OneToOne(cascade = CascadeType.REFRESH)

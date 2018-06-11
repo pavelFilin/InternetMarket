@@ -16,6 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping("categories")
 public class CategoryController {
+    private final String DONT_DELETE = "Невозможно удалить";
+
     @Autowired
     private CategoryService categoryService;
 
@@ -51,8 +53,12 @@ public class CategoryController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("delete/{category}")
-    public String userEditForm(@PathVariable Category category, Model model) {
-        categoryRepository.delete(category);
+    public String deleteCategory(@PathVariable Category category, Model model) {
+        try {
+            categoryRepository.delete(category);
+        } catch (Exception e) {
+            model.addAttribute("message", DONT_DELETE);
+        }
         return "redirect:/categories/diagram";
     }
 
