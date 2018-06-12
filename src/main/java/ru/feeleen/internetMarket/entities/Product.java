@@ -27,7 +27,7 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 8096)
     private String description;
 
     @Column(name = "warrantyMonths")

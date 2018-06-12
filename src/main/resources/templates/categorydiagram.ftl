@@ -37,7 +37,7 @@
                 <form method="post" action="/categories/addcategory">
                     <div class="form-group">
                         <label for="categoryName">Название</label>
-                        <input name="title" type="text" class="form-control" id="categoryName" placeholder="Название категории">
+                        <input maxlength="50" name="title" type="text" class="form-control" id="categoryName" placeholder="Название категории">
 
                     </div>
                     <div class="form-group">

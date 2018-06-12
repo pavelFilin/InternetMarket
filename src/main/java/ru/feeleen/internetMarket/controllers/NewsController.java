@@ -1,7 +1,6 @@
 package ru.feeleen.internetMarket.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("news")
 public class NewsController {
-    @Autowired
-    private NewsRepository newsRepository;
     @Autowired
     private NewsService newsService;
 

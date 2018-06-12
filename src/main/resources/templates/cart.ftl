@@ -25,7 +25,7 @@
                              class="">${cartItem.getProduct().getName()}</a></td>
                       <td>
                           <div class="input-group">
-                              <input class="form-control-sm" value="${cartItem.getAmount()}" type="number"
+                              <input max="999" min="0" class="form-control-sm" value="${cartItem.getAmount()}" type="number"
                                      onchange="changeProductAmount(this, ${cartItem.getProduct().getId()})">
                           </div>
                       </td>

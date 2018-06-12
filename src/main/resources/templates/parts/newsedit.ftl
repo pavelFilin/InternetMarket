@@ -20,7 +20,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Заголовок</span>
                         </div>
-                        <input name="title" type="text" class="form-control" name="productName" value="${news.title?if_exists}"
+                        <input name="title" maxlength="50" type="text" class="form-control" value="${news.title?if_exists}"
                                placeholder="Заголовок">
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Описание</span>
             </div>
-            <textarea name="text" class="form-control">${news.text?if_exists}</textarea>
+            <textarea name="text" maxlength="8000" class="form-control">${news.text?if_exists}</textarea>
         </div>
 
         <div class="row justify-content-center">

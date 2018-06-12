@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="productPrise">Цена</label>
-                    <input name="price" type="number" value="${product.price?string["0"]}"
+                    <input name="price" max="9999999" min="0" type="number" value="${product.price?string["0"]}"
                            class="${(priceError??)?string('is-invalid', '')} form-control form-control-lg"
                            id="productPrice">
                      <#if priceError??>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="productPrise">Гарантия</label>
-                    <input name="warrantyMonths" type="number" class="form-control form-control-lg"
+                    <input max="999" min="0" name="warrantyMonths" type="number" class="form-control form-control-lg"
                            value="${product.warrantyMonths?if_exists}">
                     <small class="form-text text-muted">Если есть!</small>
                 </div>
@@ -75,7 +75,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Описание</span>
             </div>
-            <textarea name="description" class="form-control ${(Error??)?string('is-invalid', '')}">${product.description}</textarea>
+            <textarea maxlength="8000" name="description" class="form-control ${(Error??)?string('is-invalid', '')}">${product.description}</textarea>
             <#if descriptionError??>
              <div class="invalid-feedback">
                  ${descriptionError}
@@ -87,7 +87,6 @@
             <div class="offset-5 col-md-4">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
                 <input type="submit" class="btn btn-primary" value="Сохранить">
-
             </div>
         </div>
     </form>

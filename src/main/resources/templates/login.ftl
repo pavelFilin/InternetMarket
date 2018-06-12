@@ -10,13 +10,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                             </div>
-                            <input name="username" class="form-control" placeholder="Email" type="text">
+                            <input maxlength="50" name="username" class="form-control" placeholder="Email" type="text">
                         </div>
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" placeholder="Пароль" type="password" name="password">
+                            <input maxlength="50" class="form-control" placeholder="Пароль" type="password" name="password">
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -24,7 +24,6 @@
                         </div>
                         <p class="text-center">Нет аккаунта? <a href="/registration">Регистрация</a></p>
                         <p class="text-center">Забыли пароль? <a href="/requestresetpassword">Востановить</a></p>
-
                     </form>
                 </article>
             </div>

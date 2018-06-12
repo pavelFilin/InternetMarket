@@ -16,7 +16,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-firstName">Имя</span>
                         </div>
-                        <input name="firstName" value="${firstName}" type="text" class="form-control" placeholder="Имя"
+                        <input maxlength="50" minlength="1" name="firstName" value="${firstName}" type="text" class="form-control" placeholder="Имя"
                                aria-describedby="basic-addon-firstName">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -31,7 +31,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-secondName">Фамилия</span>
                         </div>
-                        <input name="secondName" value="${secondName}" type="text" class="form-control"
+                        <input minlength="50" name="secondName" value="${secondName}" type="text" class="form-control"
                                placeholder="Имя" aria-describedby="basic-addon-secondName">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -46,7 +46,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-address">Адрес</span>
                         </div>
-                        <input name="address" value="${userContacts.getAddress()?if_exists}" type="text"
+                        <input minlength="50" name="address" value="${userContacts.getAddress()?if_exists}" type="text"
                                class="form-control" placeholder="Адрес" aria-describedby="b asic-addon-address">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -61,7 +61,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-city">Город</span>
                         </div>
-                        <input name="city" value="${userContacts.getCity()?if_exists}" type="text" class="form-control"
+                        <input minlength="50" name="city" value="${userContacts.getCity()?if_exists}" type="text" class="form-control"
                                placeholder="Город" aria-describedby="basic-addon-city">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -76,7 +76,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-country">Страна</span>
                         </div>
-                        <input name="country" value="${userContacts.getCountry()?if_exists}" type="text"
+                        <input minlength="50" name="country" value="${userContacts.getCountry()?if_exists}" type="text"
                                class="form-control" placeholder="Страна" aria-describedby="basic-addon-country">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -91,7 +91,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon-phone">Телефон</span>
                         </div>
-                        <input name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control"
+                        <input minlength="11" name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control"
                                placeholder="Телефон" aria-describedby="basic-addon-phone">
                         <div class="input-group-append">
                             <input type="hidden" name="_csrf" value="${_csrf.token}"/>

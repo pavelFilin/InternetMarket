@@ -42,17 +42,6 @@
                     </#if>
 
                     <div class="row">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb small" style="margin-bottom: 0">
-                                <li class="breadcrumb-item"><a href="#">Категория</a></li>
-                                <li class="breadcrumb-item"><a href="#">Саб категория</a></li>
-                                <li class="breadcrumb-item"><a href="#">Сабсаб категория</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Сабсабсаб категория</li>
-                            </ol>
-                        </nav>
-                    </div>
-
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="">
                                 <img src="/img/${product.imageUrl?if_exists}" class="img-fluid">

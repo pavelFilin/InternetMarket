@@ -37,8 +37,8 @@
                 <form method="post" action="/order/makeorder">
                     <div class="input-group">
                         <input type="hidden" name = "cart" value="${cart.id}">
-                        <input name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control" placeholder="Телефон">
-                        <input name="address" value="${userContacts.getAddress()?if_exists}" type="text" class="form-control" placeholder="Адрес">
+                        <input maxlength="50" name="phone" value="${userContacts.getPhone()?if_exists}" type="tel" class="form-control" placeholder="Телефон">
+                        <input maxlength="50" name="address" value="${userContacts.getAddress()?if_exists}" type="text" class="form-control" placeholder="Адрес">
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                         <input type= "submit" class="btn btn-outline-primary" value="Купить">
                     </div>

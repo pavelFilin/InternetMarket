@@ -20,7 +20,7 @@ public class News {
 
     private String title;
 
-    @Column(name = "text", nullable = false)
+    @Column(name = "text", nullable = false, length = 8096)
     @NotBlank(message = "Не может быть пустым")
     private String text;
 

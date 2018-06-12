@@ -26,7 +26,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Заголовок</span>
                                                 </div>
-                                                <input name="title" type="text"
+                                                <input maxlength="50" name="title" type="text"
 
                                                        class="form-control ${(titleError??)?string('is-invalid', '')}"
                                                        name="productName"
@@ -45,7 +45,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Описание</span>
                                     </div>
-                                    <textarea name="text" class="form-control ${(textError??)?string('is-invalid', '')}"></textarea>
+                                    <textarea maxlength="8000" name="text" class="form-control ${(textError??)?string('is-invalid', '')}"></textarea>
                                     <#if textError??>
                                       <div class="invalid-feedback">
                                           ${textError}

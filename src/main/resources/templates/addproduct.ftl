@@ -28,7 +28,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Назвавние</span>
                                                 </div>
-                                                <input name="name" type="text"
+                                                <input maxlength="50" name="name" type="text"
                                                        value="<#if product??>${product.name}</#if>"
                                                        class="form-control ${(nameError??)?string('is-invalid', '')}"
                                                        name="productName"
@@ -57,7 +57,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="productPrise">Цена</label>
-                                            <input name="price" type="number"
+                                            <input max="9999999" min="0" name="price" type="number"
                                                    value="<#if product??>${(product.price?if_exists)}</#if>"
                                                    class="${(priceError??)?string('is-invalid', '')} form-control form-control-lg"
                                                    id="productPrice"
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="productPrise">Гарантия</label>
-                                            <input name="warrantyMonths" type="number"
+                                            <input max="999" min="0" warrantyMonths" type="number"
                                                    class="form-control form-control-lg"
                                                    placeholder="">
                                             <small class="form-text text-muted">Если есть!</small>
@@ -81,7 +81,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Описание</span>
                                     </div>
-                                    <textarea name="description"
+                                    <textarea maxlength="8000" name="description"
                                               class="form-control ${(Error??)?string('is-invalid', '')}"><#if product??>${(product.description?if_exists)}</#if></textarea>
                                      <#if descriptionError??>
                                             <div class="invalid-feedback">
