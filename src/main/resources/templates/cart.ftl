@@ -19,7 +19,7 @@
                 </tr>
                   <#list cart.getCartItems() as cartItem>
                   <tr>
-                      <td><img src="/img/${cartItem.getProduct().getImageUrl()}" alt="" class="img-thumbnail"
+                      <td><img src="/img/${cartItem.getProduct().getImageUrl()?if_exists}" alt="" class="img-thumbnail"
                                style="width: 200px"></td>
                       <td><a href="/product/${cartItem.getProduct().getId()}"
                              class="">${cartItem.getProduct().getName()}</a></td>

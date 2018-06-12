@@ -23,6 +23,7 @@ public class ProductService {
 
     @Value("${upload.path}")
     private String uploadPath;
+
     @Value("${generalPicture}")
     private String generalPicture;
 
@@ -32,6 +33,8 @@ public class ProductService {
         String path = FileHelper.loadFile(file, uploadPath);
         if (!StringUtils.isEmpty(path)) {
             product.setImageUrl(path);
+        } else {
+            product.setImageUrl(generalPicture);
         }
         product.setAvailable(true);
         productRepository.save(product);
@@ -64,8 +67,6 @@ public class ProductService {
         String path = FileHelper.loadFile(file, uploadPath);
         if (!StringUtils.isEmpty(path)) {
             product.setImageUrl(path);
-        } else {
-            product.setImageUrl(generalPicture);
         }
 
         if (price != null) {
