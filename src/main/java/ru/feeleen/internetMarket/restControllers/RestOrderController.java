@@ -25,6 +25,7 @@ public class RestOrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+
         @RequestMapping(value = "/order/changeexecutionstage", method = RequestMethod.GET, produces = "application/json")
     public String changeAmount(@AuthenticationPrincipal User user, @RequestParam(name = "id") Order order, @RequestParam String executionStage) throws Exception {
         if (!user.isAdmin()) {

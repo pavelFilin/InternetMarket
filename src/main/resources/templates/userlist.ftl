@@ -18,8 +18,8 @@
                     <#list users as user>
                         <tr>
                             <td><a href="/user/${user.id}">${user.email}</a></td>
-                            <td>${user.firstName}</td>
-                            <td>${user.secondName}</td>
+                            <td>${user.firstName?html}</td>
+                            <td>${user.secondName?html}</td>
                             <td><#list user.roles as role>${role}<#sep>, </#list></td>
                         </tr>
                     </#list>

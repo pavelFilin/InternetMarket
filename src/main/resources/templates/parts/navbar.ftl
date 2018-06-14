@@ -23,7 +23,7 @@
                 </ul>
             </div>
             <#if !known>
-                <span class="nav-text text-light">Hi, gust</span>
+                <span class="nav-text text-light">Hi, guest</span>
                 <div class="ml-1"><span><a class="" href="/user/profile">Войти</a> <a class="" href="/registration">Регистация</a></span>
                 </div>
             <#else>
