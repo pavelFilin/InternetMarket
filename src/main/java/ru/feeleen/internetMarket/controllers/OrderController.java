@@ -34,6 +34,11 @@ public class OrderController {
     @GetMapping("makeorder")
     public String getMakeOder(@AuthenticationPrincipal User user, Model model) {
         Cart cart = cartService.getCartByUser(user);
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUser(user);
+            user.setCart(new Cart());
+        }
         UserContacts userContacts = userContactsService.getUserContactsByUser(user);
         model.addAttribute("cart", cart);
         model.addAttribute("userContacts", userContacts);
@@ -42,7 +47,7 @@ public class OrderController {
 
     @PostMapping("makeorder")
     public String MakeOrder(@AuthenticationPrincipal User user, @RequestParam Cart cart, @RequestParam String address, @RequestParam String phone, Model model) {
-        if (StringUtils.isEmpty(address) || StringUtils.isEmpty(phone) ){
+        if (StringUtils.isEmpty(address) || StringUtils.isEmpty(phone)) {
             model.addAttribute("cart", cart);
             UserContacts userContacts = userContactsService.getUserContactsByUser(user);
             model.addAttribute("userContacts", userContacts);
@@ -61,7 +66,7 @@ public class OrderController {
             model.addAttribute("order", order);
             model.addAttribute("userContacts", userContactsRepository.findById(order.getUser().getUserContacts().getId()).get());
             return "order";
-        } else{
+        } else {
             return null;
         }
     }

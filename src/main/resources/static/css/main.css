@@ -1,12 +1,14 @@
 .carousel {
-    padding-top:10px;
+    padding-top: 10px;
     max-width: 700px;
     height: 200px !important;
     overflow: hidden;
 }
+
 .carousel-inner {
     overflow: visible;
 }
+
 .carousel-inner img {
     left: 50%;
     max-width: 800px !important;
@@ -14,7 +16,7 @@
     min-width: 400px;
     position: absolute;
     top: 200px;
-    transform: translate(-50%,-100%);
+    transform: translate(-50%, -100%);
 }
 
 .carousel-inner .mycarousel {
@@ -24,7 +26,7 @@
     min-width: 400px;
     position: absolute;
     top: 200px;
-    transform: translate(-50%,-100%);
+    transform: translate(-50%, -100%);
 }
 
 .product-container {
@@ -32,12 +34,12 @@
     padding: 10px !important;
 }
 
-.product-image img{
+.product-image img {
     width: 180px;
     height: 180px;
 }
 
-.product-name{
+.product-name {
     text-overflow: ellipsis;
 }
 
@@ -63,7 +65,7 @@
 }
 
 .noborder {
-    border: none!important;
+    border: none !important;
 }
 
 .search-place {
@@ -79,11 +81,22 @@
     background-color: #f5f5f5;
 }
 
+.footer2 {
+    width: 100%;
+}
+
 
 .cart td {
     vertical-align: middle;
 }
 
-.table td, th{
+.table td, th {
     text-align: center;
 }
+
+.product-cart {
+    max-width: 300px;
+}
+
+
+

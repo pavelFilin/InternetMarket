@@ -1,41 +1,43 @@
 <#macro page>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="_csrf" content="${_csrf.token}"/>
-    <meta name="_csrf_header" content="${_csrf.headerName}"/>
-    <meta charset="UTF-8">
-    <title>Fish Shop</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
-
-    <link rel="stylesheet" href="/static/css/main.css">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <body>
     <#include "navbar.ftl">
-    <#nested >
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <div class="all-content">
+        <#nested >
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="/static/js/jquery-3.3.1.js"></script>
-<#--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-<script src="/static/js/bootstrap.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
-        integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-        crossorigin="anonymous"></script>
-<script src="/static/js/main.js"></script>
-</body>
-</html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <#--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="/static/js/bootstrap.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
+            integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+    </body>
+    <head>
+        <meta name="_csrf" content="${_csrf.token}"/>
+        <meta name="_csrf_header" content="${_csrf.headerName}"/>
+        <meta charset="UTF-8">
+        <title>Fish Shop</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+
+        <link rel="stylesheet" href="/static/css/main.css">
+    </head>
+    </html>
 </#macro>
 
 
 <#macro footer>
-    <footer class="page-footer font-small bg-dark text-light">
+    <footer class="page-footer font-small bg-dark text-light footer2">
         <!--Footer Links-->
         <div class="container text-center text-md-left">
             <div class="row">

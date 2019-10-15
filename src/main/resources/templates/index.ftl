@@ -2,7 +2,7 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-<div class="container-fluid" id="content">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-3 bg-dark text-light">
             <div class="container-fluid" id="catalog" style="padding: 0">
@@ -41,7 +41,7 @@
                             <#if ((product?counter-1)%4)==0>
                                 <div class="card-deck">
                             </#if>
-                            <div class="card mb-4">
+                            <div class="card product-cart mb-4">
                                 <img class="card-img-top" src="/img/${product.imageUrl?if_exists}"
                                      alt="${product.name}">
                                 <div class="card-body">
