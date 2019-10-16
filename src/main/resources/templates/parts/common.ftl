@@ -1,6 +1,16 @@
 <#macro page>
     <!DOCTYPE html>
     <html lang="en">
+    <head>
+        <meta name="_csrf" content="${_csrf.token}"/>
+        <meta name="_csrf_header" content="${_csrf.headerName}"/>
+        <meta charset="UTF-8">
+        <title>Fish Shop</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+    </head>
     <body>
     <#include "navbar.ftl">
     <div class="all-content">
@@ -20,18 +30,6 @@
             crossorigin="anonymous"></script>
     <script src="/static/js/main.js"></script>
     </body>
-    <head>
-        <meta name="_csrf" content="${_csrf.token}"/>
-        <meta name="_csrf_header" content="${_csrf.headerName}"/>
-        <meta charset="UTF-8">
-        <title>Fish Shop</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <link rel="stylesheet" href="/static/css/bootstrap.css">
-
-        <link rel="stylesheet" href="/static/css/main.css">
-    </head>
     </html>
 </#macro>
 
